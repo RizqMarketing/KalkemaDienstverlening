@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkema Dienstverlening — Grondverzet &amp; Machineverhuur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ──────────────────────────────────────── */
+    :root {
+      --black:     #070707;
+      --dark:      #0F0F0F;
+      --surface:   #161616;
+      --surface2:  #1E1E1C;
+      --orange:    #E00A25;
+      --orange-dim: #8A0018;
+      --gold:      #B89050;
+      --cream:     #EDE8DF;
+      --muted:     #5A5750;
+      --border:    #2A2A26;
+
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-cond:    'Barlow Condensed', sans-serif;
+      --font-body:    'Barlow', sans-serif;
+    }
+
+    /* ─── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── Noise Overlay ──────────────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 180px;
+      opacity: 0.03;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4rem;
+      height: 72px;
+      background: transparent;
+      transition: background 0.4s, border-bottom 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(7,7,7,0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .nav-logo-mark {
+      width: 36px; height: 36px;
+      background: var(--orange);
+      clip-path: polygon(0 0, 100% 0, 100% 60%, 60% 100%, 0 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      color: var(--black);
+      font-weight: 900;
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+      font-family: var(--font-cond);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .nav-links a {
+      color: var(--muted);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--orange);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta {
+      background: var(--orange);
+      color: var(--black);
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      clip-path: polygon(0 0, 100% 0, 100% 65%, 88% 100%, 0 100%);
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .nav-cta:hover { background: var(--cream); }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+      padding: 0 4rem 6rem;
+    }
+
+    /* Grid texture background */
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: var(--black);
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(224,114,36,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(224,114,36,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 80% 110%, rgba(224,114,36,0.12) 0%, transparent 65%),
+                  radial-gradient(ellipse 50% 70% at -10% 50%, rgba(184,144,80,0.06) 0%, transparent 60%),
+                  linear-gradient(180deg, transparent 40%, rgba(7,7,7,0.95) 100%);
+    }
+
+    /* Large decorative letters */
+    .hero-deco {
+      position: absolute;
+      right: -2vw; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: 30vw;
+      line-height: 0.85;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(224,114,36,0.07);
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: -0.02em;
+    }
+
+    /* Diagonal accent bar */
+    .hero-bar {
+      position: absolute;
+      top: 0; right: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--orange) 0%, transparent 100%);
+    }
+    /* Hazard stripes accent */
+    .hero-hazard {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--orange) 0px,
+        var(--orange) 24px,
+        transparent 24px,
+        transparent 40px
+      );
+      opacity: 0.6;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 800px;
+    }
+
+    .hero-label {
+      font-family: var(--font-cond);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+    .hero-label::before {
+      content: '';
+      display: block; width: 30px; height: 1px;
+      background: var(--orange);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 13vw, 14rem);
+      line-height: 0.88;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+    .hero-title span {
+      display: block;
+      opacity: 0;
+      animation: slideRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .hero-title span:nth-child(1) { animation-delay: 0.5s; }
+    .hero-title span:nth-child(2) {
+      color: var(--orange);
+      animation-delay: 0.65s;
+    }
+
+    .hero-sub {
+      font-family: var(--font-cond);
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.9s forwards;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      font-weight: 300;
+      color: var(--cream);
+      opacity: 0.7;
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 1s forwards;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 1.1s forwards;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--black);
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      clip-path: polygon(0 0, 100% 0, 100% 65%, 92% 100%, 0 100%);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--cream); transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-cond);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--cream); border-color: var(--cream); }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem; right: 4rem;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 1.5s forwards;
+    }
+    .hero-scroll span {
+      font-family: var(--font-cond);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--orange), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ─── DIENSTEN ───────────────────────────────────────────── */
+    .diensten {
+      background: var(--dark);
+      padding: 8rem 4rem;
+      position: relative;
+    }
+    .diensten::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+      opacity: 0.3;
+    }
+
+    .section-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 5rem;
+      gap: 2rem;
+    }
+    .section-label {
+      font-family: var(--font-cond);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before {
+      content: '';
+      display: block; width: 24px; height: 1px;
+      background: var(--orange);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 0.9;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+    .section-desc {
+      max-width: 340px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--muted);
+      align-self: flex-end;
+    }
+
+    .diensten-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .dienst-card {
+      background: var(--surface);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: background 0.3s;
+    }
+    .dienst-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--orange);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .dienst-card:hover { background: var(--surface2); }
+    .dienst-card:hover::before { transform: scaleX(1); }
+
+    .dienst-num {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--border);
+      line-height: 1;
+      margin-bottom: 2rem;
+      transition: -webkit-text-stroke-color 0.3s;
+    }
+    .dienst-card:hover .dienst-num {
+      -webkit-text-stroke-color: var(--orange-dim);
+    }
+
+    .dienst-icon {
+      width: 48px; height: 48px;
+      margin-bottom: 1.5rem;
+      color: var(--orange);
+    }
+
+    .dienst-name {
+      font-family: var(--font-cond);
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .dienst-text {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .dienst-link {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-cond);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .dienst-card:hover .dienst-link { opacity: 1; transform: translateX(0); }
+    .dienst-link svg { width: 16px; height: 16px; }
+
+    /* ─── OVER ONS ───────────────────────────────────────────── */
+    .over-ons {
+      padding: 8rem 4rem;
+      background: var(--black);
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Diagonal cut on right side */
+    .over-ons::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 40%;
+      height: 100%;
+      background: var(--surface);
+      clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .over-text { position: relative; z-index: 2; }
+    .over-visual {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+
+    .over-visual-main {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      clip-path: polygon(0 0, 100% 0, 100% 88%, 94% 100%, 0 100%);
+      border: 1px solid var(--border);
+    }
+    .over-visual-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .over-visual-main:hover img {
+      transform: scale(1.04);
+    }
+
+    .kenmerken {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .kenmerk {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-cond);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .kenmerk:first-child { border-top: 1px solid var(--border); }
+    .kenmerk-dot {
+      width: 8px; height: 8px;
+      background: var(--orange);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      flex-shrink: 0;
+    }
+
+    /* ─── RED TICKER ─────────────────────────────────────────── */
+    .stats {
+      background: var(--orange);
+      overflow: hidden;
+      position: relative;
+    }
+    .stats::before,
+    .stats::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 100px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .stats::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--orange), transparent);
+    }
+    .stats::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--orange), transparent);
+    }
+    .stats-track {
+      display: flex;
+      width: max-content;
+      animation: ticker-scroll 28s linear infinite;
+    }
+    .stats:hover .stats-track {
+      animation-play-state: paused;
+    }
+    .stats-set {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 2.2rem;
+      height: 56px;
+      white-space: nowrap;
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .stat-dot {
+      width: 5px; height: 5px;
+      background: rgba(0,0,0,0.35);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      flex-shrink: 0;
+    }
+    .stats-sep {
+      width: 1px; height: 18px;
+      background: rgba(0,0,0,0.18);
+      flex-shrink: 0;
+    }
+
+    /* ─── WERKGEBIED ─────────────────────────────────────────── */
+    .werkwijze {
+      background: var(--dark);
+      padding: 8rem 4rem;
+    }
+    .werkwijze .section-header { margin-bottom: 4rem; }
+
+    .stappen {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      position: relative;
+    }
+    .stappen::after {
+      content: '';
+      position: absolute;
+      top: 40px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+    }
+
+    .stap {
+      padding: 0 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .stap-num-wrap {
+      width: 80px; height: 80px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 2rem;
+      clip-path: polygon(0 0, 85% 0, 100% 15%, 100% 100%, 0 100%);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .stap:hover .stap-num-wrap {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+    .stap-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--muted);
+      transition: color 0.3s;
+    }
+    .stap:hover .stap-num { color: var(--black); }
+    .stap-title {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+    .stap-text {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ─── TICKER ────────────────────────────────────────────── */
+    .ticker {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+      padding: 0;
+    }
+    .ticker::before,
+    .ticker::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .ticker::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--surface), transparent);
+    }
+    .ticker::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--surface), transparent);
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker-scroll 32s linear infinite;
+    }
+    .ticker:hover .ticker-track {
+      animation-play-state: paused;
+    }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ticker-set {
+      display: flex;
+      align-items: center;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 2.5rem;
+      height: 52px;
+      white-space: nowrap;
+      font-family: var(--font-cond);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .ticker-item:hover { opacity: 1; }
+    .ticker-icon {
+      width: 6px; height: 6px;
+      background: var(--orange);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      flex-shrink: 0;
+    }
+    .ticker-sep {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    /* ─── REVIEWS ───────────────────────────────────────────── */
+    .reviews {
+      background: var(--black);
+      padding: 8rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .reviews::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(224,10,37,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(224,10,37,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .reviews-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 4rem; gap: 2rem;
+    }
+    .google-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      flex-shrink: 0;
+    }
+    .google-badge-score {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .google-badge-right {
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .google-badge-stars {
+      display: flex; gap: 2px;
+    }
+    .google-badge-stars svg {
+      width: 13px; height: 13px;
+      fill: var(--orange);
+    }
+    .google-badge-label {
+      font-family: var(--font-cond);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    .review-card {
+      background: var(--surface);
+      padding: 2.5rem;
+      display: flex; flex-direction: column; gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .review-card::before {
+      content: '\201C';
+      position: absolute;
+      top: -0.5rem; right: 1.5rem;
+      font-family: var(--font-display);
+      font-size: 8rem;
+      color: var(--orange);
+      opacity: 0.06;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .review-card:hover { background: var(--surface2); }
+    .review-stars {
+      display: flex; gap: 3px;
+    }
+    .review-stars svg {
+      width: 14px; height: 14px;
+      fill: var(--orange);
+    }
+    .review-text {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--cream);
+      opacity: 0.85;
+      flex: 1;
+    }
+    .review-footer {
+      display: flex; align-items: center; gap: 12px;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .review-avatar {
+      width: 36px; height: 36px;
+      background: var(--orange);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      color: var(--black);
+      flex-shrink: 0;
+    }
+    .review-name {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .review-time {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ─── CONTACT / CTA ──────────────────────────────────────── */
+    .contact {
+      background: var(--black);
+      padding: 8rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: 'CONTACT';
+      position: absolute;
+      right: -2rem; bottom: -4rem;
+      font-family: var(--font-display);
+      font-size: 20vw;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(224,114,36,0.05);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      position: relative; z-index: 1;
+    }
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 2rem;
+    }
+    .contact-title strong {
+      color: var(--orange);
+      display: block;
+    }
+    .contact-sub {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 400px;
+      margin-bottom: 3rem;
+    }
+    .contact-info {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .contact-info-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      font-size: 0.9rem;
+      color: var(--cream);
+    }
+    .contact-info-label {
+      font-family: var(--font-cond);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      min-width: 80px;
+      padding-top: 2px;
+    }
+
+    /* Form */
+    .form {
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .form-label {
+      font-family: var(--font-cond);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-input, .form-select, .form-textarea {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--orange);
+    }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-select option { background: var(--surface); }
+    .form-submit {
+      align-self: flex-start;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      padding: 3rem 4rem;
+      display: flex;
+      align-items: center; justify-content: space-between;
+      gap: 2rem;
+    }
+    .footer-logo {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .footer-links {
+      display: flex; gap: 2rem; list-style: none;
+      font-family: var(--font-cond);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .footer-links a { color: var(--muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--orange); }
+
+    /* ─── Keyframes ──────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideRight {
+      from { opacity: 0; transform: translateX(-40px) skewX(4deg); }
+      to   { opacity: 1; transform: translateX(0) skewX(0); }
+    }
+
+    /* ─── Scroll reveal ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .diensten-grid { grid-template-columns: repeat(3, 1fr) !important; }
+      .stappen { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+      .stappen::after { display: none; }
+      .stap { padding: 0; }
+      .stap-num-wrap { width: 70px; height: 70px; }
+      .over-ons { grid-template-columns: 1fr; }
+      .over-ons::after { display: none; }
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-header { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hero, .diensten, .over-ons, .werkwijze, .contact, footer {
+        padding-left: 1.5rem; padding-right: 1.5rem;
+      }
+      .diensten-grid { grid-template-columns: 1fr !important; }
+      .dienst-card { padding: 2rem 1.5rem; }
+      .dienst-num { font-size: 3.5rem; margin-bottom: 1rem; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews { padding: 5rem 1.5rem; }
+      .stats { /* ticker, geen aanpassing nodig */ }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .stappen {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding-left: 2rem;
+        border-left: 2px solid var(--border);
+        position: relative;
+      }
+      .stappen::after { display: none; }
+      .stap {
+        padding: 0 0 2.5rem 2rem;
+        position: relative;
+      }
+      .stap:last-child { padding-bottom: 0; }
+      .stap::before {
+        content: '';
+        position: absolute;
+        left: -9px; top: 24px;
+        width: 16px; height: 16px;
+        background: var(--surface);
+        border: 2px solid var(--orange);
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+      .stap-num-wrap { width: 60px; height: 60px; margin-bottom: 1rem; }
+      .stap-num { font-size: 1.4rem; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ──────────────────────────────────────────────── -->
+  <nav id="main-nav">
+    <div class="nav-logo">
+      <div class="nav-logo-mark">K</div>
+      Kalkema Dienstverlening
+    </div>
+    <ul class="nav-links">
+      <li><a href="#diensten">Diensten</a></li>
+      <li><a href="#over-ons">Over Ons</a></li>
+      <li><a href="#werkwijze">Werkwijze</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      Offerte Aanvragen
+    </button>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────────────── -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-deco" aria-hidden="true">K</div>
+    <div class="hero-bar" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="hero-label">Direct een ervaren grondwerker nodig?</div>
+
+      <h1 class="hero-title">
+        <span>Kalkema</span>
+        <span>Dienst&shy;verlening</span>
+      </h1>
+
+      <p class="hero-sub">Grond bewegen. Dromen realiseren.</p>
+
+      <p class="hero-tagline">
+        Vakmanschap in grond, steen en staal — voor particulieren en bedrijven in Lelystad en omgeving.
+        Snel, betrouwbaar en altijd scherp geprijsd.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Offerte Aanvragen</a>
+        <a href="#diensten" class="btn-secondary">
+          Bekijk diensten
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── TICKER ──────────────────────────────────────────── -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <!-- set 1 -->
+      <div class="ticker-set">
+        <div class="ticker-item"><div class="ticker-icon"></div> Gratis &amp; Vrijblijvende Offerte</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Vakkundig Uitgevoerd</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> €0 Verborgen Kosten</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Particulier &amp; Zakelijk</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Lelystad &amp; Omgeving</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Reactie Binnen 24 Uur</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Modern Machinepark</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Strak &amp; Betrouwbaar</div>
+        <div class="ticker-sep"></div>
+      </div>
+      <!-- set 2 (identiek — voor naadloze loop) -->
+      <div class="ticker-set">
+        <div class="ticker-item"><div class="ticker-icon"></div> Gratis &amp; Vrijblijvende Offerte</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Vakkundig Uitgevoerd</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> €0 Verborgen Kosten</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Particulier &amp; Zakelijk</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Lelystad &amp; Omgeving</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Reactie Binnen 24 Uur</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Modern Machinepark</div>
+        <div class="ticker-sep"></div>
+        <div class="ticker-item"><div class="ticker-icon"></div> Strak &amp; Betrouwbaar</div>
+        <div class="ticker-sep"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DIENSTEN ─────────────────────────────────────────── -->
+  <section class="diensten" id="diensten">
+    <div class="section-header">
+      <div>
+        <div class="section-label reveal">Wat wij doen</div>
+        <h2 class="section-title reveal reveal-delay-1">Onze<br/>Diensten</h2>
+      </div>
+      <p class="section-desc reveal reveal-delay-2">
+        Van grondverzet tot tuinaanleg — wij bieden complete oplossingen voor uw grond- en bouwproject.
+        Snel, betrouwbaar en met de juiste machines.
+      </p>
+    </div>
+
+    <div class="diensten-grid" style="grid-template-columns: repeat(5, 1fr);">
+      <!-- Grondwerk -->
+      <div class="dienst-card reveal reveal-delay-1">
+        <div class="dienst-num" aria-hidden="true">01</div>
+        <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 40h40M8 40V28l8-8 8 4 8-12 8 8V40"/>
+          <path d="M20 40V32h8v8" stroke-width="1.5"/>
+          <circle cx="38" cy="16" r="3"/>
+        </svg>
+        <div class="dienst-name">Grondwerk</div>
+        <p class="dienst-text">
+          Afgraven, egaliseren, ophogen en saneren. Wij verzorgen alle grondwerkzaamheden voor bouw- en infraprojecten, groot en klein.
+        </p>
+        <a href="#contact" class="dienst-link">
+          Meer info
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Machineverhuur -->
+      <div class="dienst-card reveal reveal-delay-2">
+        <div class="dienst-num" aria-hidden="true">02</div>
+        <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="4" y="28" width="28" height="14" rx="1"/>
+          <path d="M32 34h8l4-8V22H32v12z"/>
+          <circle cx="12" cy="42" r="4"/>
+          <circle cx="36" cy="42" r="4"/>
+          <path d="M4 34V20l8-6h12l8 10"/>
+        </svg>
+        <div class="dienst-name">Machineverhuur</div>
+        <p class="dienst-text">
+          Huur onze professionele grondverzetmachines: graafmachines, dumptrucks, trilplaten en meer — met of zonder machinist.
+        </p>
+        <a href="#contact" class="dienst-link">
+          Meer info
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Straatwerk -->
+      <div class="dienst-card reveal reveal-delay-3">
+        <div class="dienst-num" aria-hidden="true">03</div>
+        <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 44h40"/>
+          <rect x="4" y="36" width="40" height="8" rx="0"/>
+          <path d="M8 36V28M14 36V28M20 36V28M26 36V28M32 36V28M38 36V28"/>
+          <path d="M4 28h40M18 28l-4-8h16l-4 8"/>
+        </svg>
+        <div class="dienst-name">Straatwerk</div>
+        <p class="dienst-text">
+          Opritten, parkeerplaatsen, bestrating en trottoirs. Solide onderfundering, netjes afgewerkt met klinkers, tegels of asfalt.
+        </p>
+        <a href="#contact" class="dienst-link">
+          Meer info
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Tuinaanleg -->
+      <div class="dienst-card reveal reveal-delay-4">
+        <div class="dienst-num" aria-hidden="true">04</div>
+        <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M24 44V24"/>
+          <path d="M24 24C24 24 14 18 14 8c0 0 5 4 10 4s10-4 10-4c0 10-10 16-10 16z"/>
+          <path d="M24 32C24 32 16 28 12 22M24 38C24 38 32 34 36 28"/>
+          <path d="M4 44h40"/>
+        </svg>
+        <div class="dienst-name">Tuinaanleg</div>
+        <p class="dienst-text">
+          Van ontwerp tot realisatie: nivellering, drainage, bestrating en beplanting. Wij geven uw buitenruimte karakter en functie.
+        </p>
+        <a href="#contact" class="dienst-link">
+          Meer info
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      <!-- Rijbodems & Longeercirkels -->
+      <div class="dienst-card reveal" style="transition-delay:0.5s">
+        <div class="dienst-num" aria-hidden="true">05</div>
+        <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="24" r="18"/>
+          <circle cx="24" cy="24" r="8"/>
+          <path d="M24 6v4M24 38v4M6 24h4M38 24h4"/>
+          <path d="M24 16v8l6 4"/>
+        </svg>
+        <div class="dienst-name">Rijbodems &amp; Longeercirkels</div>
+        <p class="dienst-text">
+          Aanleg en onderhoud van rijbodems en longeercirkels voor de paardenhouderij. Stabiel, waterdoorlatend en duurzaam uitgevoerd.
+        </p>
+        <a href="#contact" class="dienst-link">
+          Meer info
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── OVER ONS ──────────────────────────────────────────── -->
+  <section class="over-ons" id="over-ons">
+    <div class="over-text">
+      <div class="section-label reveal">Wie Wij Zijn</div>
+      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:2rem;">
+        Betrouwbaar.<br/>Vakkundig.<br/>Lokaal.
+      </h2>
+      <p class="reveal reveal-delay-2" style="font-size:0.95rem;line-height:1.8;color:var(--muted);margin-bottom:2.5rem;max-width:440px;">
+        Kalkema Dienstverlening is uw regionale partner voor grondverzet en bouwdiensten in Lelystad en omgeving.
+        Met een modern machinepark en ervaren vakmannen leveren wij kwaliteit — van kleine tuinprojecten
+        tot grote infrastructuurwerken.
+      </p>
+      <div class="kenmerken reveal reveal-delay-3">
+        <div class="kenmerk"><div class="kenmerk-dot"></div> Ervaren vakmannen op de machine</div>
+        <div class="kenmerk"><div class="kenmerk-dot"></div> Modern en goed onderhouden machinepark</div>
+        <div class="kenmerk"><div class="kenmerk-dot"></div> Scherpe prijzen, geen verborgen kosten</div>
+        <div class="kenmerk"><div class="kenmerk-dot"></div> Zowel voor particulier als zakelijk</div>
+        <div class="kenmerk"><div class="kenmerk-dot"></div> Snelle oplevering, strakke planning</div>
+      </div>
+    </div>
+
+    <div class="over-visual">
+      <div class="over-visual-main reveal">
+        <img
+          src="../OneDrive/Bureaublad/Kalkema fotos/IMG-20240731-WA0006.jpg"
+          alt="Kalkema Dienstverlening aan het werk"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RED TICKER ───────────────────────────────────────── -->
+  <div class="stats" aria-hidden="true">
+    <div class="stats-track">
+      <div class="stats-set">
+        <div class="stat"><div class="stat-dot"></div> Reactie Binnen 24 Uur</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Particulier &amp; Zakelijk</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Gratis Offerte</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> €0 Onverwachte Kosten</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Vakkundig Uitgevoerd</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Netjes Opgeleverd</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Lelystad &amp; Omgeving</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Afspraken Nagekomen</div>
+        <div class="stats-sep"></div>
+      </div>
+      <div class="stats-set">
+        <div class="stat"><div class="stat-dot"></div> Reactie Binnen 24 Uur</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Particulier &amp; Zakelijk</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Gratis Offerte</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> €0 Onverwachte Kosten</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Vakkundig Uitgevoerd</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Netjes Opgeleverd</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Lelystad &amp; Omgeving</div>
+        <div class="stats-sep"></div>
+        <div class="stat"><div class="stat-dot"></div> Afspraken Nagekomen</div>
+        <div class="stats-sep"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── WERKWIJZE ─────────────────────────────────────────── -->
+  <section class="werkwijze" id="werkwijze">
+    <div class="section-header">
+      <div>
+        <div class="section-label reveal">Hoe het werkt</div>
+        <h2 class="section-title reveal reveal-delay-1">Werkwijze</h2>
+      </div>
+      <p class="section-desc reveal reveal-delay-2">
+        Van uw eerste vraag tot de oplevering — een helder en betrouwbaar proces.
+      </p>
+    </div>
+
+    <div class="stappen">
+      <div class="stap reveal reveal-delay-1">
+        <div class="stap-num-wrap"><div class="stap-num">1</div></div>
+        <div class="stap-title">Aanvraag</div>
+        <p class="stap-text">Neem contact op via het formulier, telefoon of mail. Beschrijf uw project zo specifiek mogelijk.</p>
+      </div>
+      <div class="stap reveal reveal-delay-2">
+        <div class="stap-num-wrap"><div class="stap-num">2</div></div>
+        <div class="stap-title">Inspectie</div>
+        <p class="stap-text">Wij bezoeken de locatie, nemen de situatie op en bespreken de mogelijkheden ter plekke.</p>
+      </div>
+      <div class="stap reveal reveal-delay-3">
+        <div class="stap-num-wrap"><div class="stap-num">3</div></div>
+        <div class="stap-title">Offerte</div>
+        <p class="stap-text">U ontvangt een heldere offerte zonder verborgen kosten. Geen verrassingen achteraf.</p>
+      </div>
+      <div class="stap reveal reveal-delay-4">
+        <div class="stap-num-wrap"><div class="stap-num">4</div></div>
+        <div class="stap-title">Uitvoering</div>
+        <p class="stap-text">Ons team gaat aan de slag met de juiste machines en vakmannen voor uw project.</p>
+      </div>
+      <div class="stap reveal" style="transition-delay:0.5s">
+        <div class="stap-num-wrap"><div class="stap-num">5</div></div>
+        <div class="stap-title">Oplevering</div>
+        <p class="stap-text">Het werk wordt netjes opgeleverd en nagelopen. U tekent voor akkoord en wij ruimen alles op.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── REVIEWS ─────────────────────────────────────────── -->
+  <section class="reviews" id="reviews">
+    <div class="reviews-header">
+      <div>
+        <div class="section-label reveal">Ervaringen</div>
+        <h2 class="section-title reveal reveal-delay-1">Wat klanten<br/>over ons zeggen</h2>
+      </div>
+      <div class="google-badge reveal reveal-delay-2">
+        <div class="google-badge-score">4.9</div>
+        <div class="google-badge-right">
+          <div class="google-badge-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="google-badge-label">19 reviews · Google</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Met een paar simpele aanpassingen hebben de heren van Kalkema Dienstverlening onze tuin omgetoverd tot een groene, kindvriendelijke plek. Ondanks de hitte hebben ze twee dagen hard gewerkt. Ze komen hun afspraken keurig na en laten de tuin opgeruimd achter. Toen er per ongeluk een kleine schade ontstond, hebben ze dit gerepareerd. Ik ben erg tevreden en zou ze zonder twijfel voor elk volgend tuinproject weer inhuren!"</p>
+        <div class="review-footer">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">Michelle Loth</div>
+            <div class="review-time">8 maanden geleden</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Kalkema Dienstverlening heeft nieuw straatwerk bij ons aangelegd. Werkt netjes, denkt graag mee en komt zijn afspraken na. Ik raad hem zeker aan!"</p>
+        <div class="review-footer">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">M J</div>
+            <div class="review-time">11 maanden geleden</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"2 weken geleden is bij ons de voorkant opnieuw bestraat waar we super blij mee zijn, heel mooi gelegd, denkt ook met de klant mee wat hun willen. Ik zou Kalkema zeker aanbevelen aan anderen!"</p>
+        <div class="review-footer">
+          <div class="review-avatar">K</div>
+          <div>
+            <div class="review-name">Kaylee Slot</div>
+            <div class="review-time">10 maanden geleden</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Afspraak geheel nagekomen. Alles netjes en vakkundig gedaan. Aanrader voor iemand die nog zoekt. Volgende klus staat alweer gepland voor 2026."</p>
+        <div class="review-footer">
+          <div class="review-avatar">F</div>
+          <div>
+            <div class="review-name">Frans Eskes</div>
+            <div class="review-time">8 maanden geleden</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Heel tevreden over de verrichtte werkzaamheden. Goed meedenken over de uitvoering, punctueel, conform planning en kwaliteit geleverd. Ik raad dit bedrijf zeker aan."</p>
+        <div class="review-footer">
+          <div class="review-avatar">O</div>
+          <div>
+            <div class="review-name">Oscar Behr</div>
+            <div class="review-time">Een jaar geleden</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Goede snelle service en goed werk geleverd. Heel blij met deze topper en zijn werk."</p>
+        <div class="review-footer">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">Max Van der Poel</div>
+            <div class="review-time">10 maanden geleden</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────────── -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div>
+        <h2 class="contact-title reveal">
+          Klaar om te<br/>
+          <strong>Starten?</strong>
+        </h2>
+        <p class="contact-sub reveal reveal-delay-1">
+          Vraag vandaag nog een vrijblijvende offerte aan. Wij reageren doorgaans binnen 24 uur.
+        </p>
+        <div class="contact-info reveal reveal-delay-2">
+          <div class="contact-info-item">
+            <span class="contact-info-label">Telefoon</span>
+            <a href="tel:0636106356" style="color:inherit;">06-36106356</a>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">E-mail</span>
+            <a href="mailto:info@kalkemadienstverlening.nl" style="color:inherit;">info@kalkemadienstverlening.nl</a>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Adres</span>
+            <span>Hondsdraf 21, 8219 PW Lelystad</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">KvK</span>
+            <span>39063177</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <form class="form reveal reveal-delay-1" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="naam">Naam</label>
+              <input class="form-input" id="naam" type="text" placeholder="Uw naam" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="telefoon">Telefoon</label>
+              <input class="form-input" id="telefoon" type="tel" placeholder="+31 6 00 000 000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">E-mailadres</label>
+            <input class="form-input" id="email" type="email" placeholder="u@voorbeeld.nl" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dienst">Dienst</label>
+            <select class="form-select" id="dienst">
+              <option value="">Selecteer een dienst</option>
+              <option>Grondwerk</option>
+              <option>Machineverhuur</option>
+              <option>Straatwerk</option>
+              <option>Tuinaanleg</option>
+              <option>Meerdere / overig</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="bericht">Omschrijving project</label>
+            <textarea class="form-textarea" id="bericht" placeholder="Beschrijf uw project kort…" required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn-primary" style="border:none;cursor:pointer;">
+              Offerte Aanvragen
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-logo">Kalkema Dienstverlening</div>
+    <span class="footer-copy">&copy; 2025 Kalkema Dienstverlening — KvK 39063177. Alle rechten voorbehouden.</span>
+    <ul class="footer-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Algemene Voorwaarden</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // ─── Nav scroll state ───────────────────────────────────────
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ─── Smooth scroll for nav links ────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ─── Scroll reveal ──────────────────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ─── Stats counter animation ────────────────────────────────
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function animateCounter(el, target, duration = 1800) {
+      const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : '+';
+      const prefix = el.dataset.prefix || '';
+      let start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        el.textContent = prefix + Math.floor(easeOut(progress) * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = prefix + target + suffix;
+      }
+      requestAnimationFrame(step);
+    }
+
+    const statsSection = document.querySelector('.stats');
+    let counted = false;
+    const statsObserver = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !counted) {
+        counted = true;
+        document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+          const target = parseInt(el.dataset.target);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : '+';
+          if (target === 0) { el.textContent = prefix + '0' + suffix; return; }
+          animateCounter(el, target);
+        });
+      }
+    }, { threshold: 0.5 });
+    statsObserver.observe(statsSection);
+
+    // ─── Hero parallax on mouse ─────────────────────────────────
+    const heroDeco = document.querySelector('.hero-deco');
+    const heroContent = document.querySelector('.hero-content');
+    document.querySelector('.hero').addEventListener('mousemove', e => {
+      const { innerWidth, innerHeight } = window;
+      const dx = (e.clientX / innerWidth - 0.5) * 12;
+      const dy = (e.clientY / innerHeight - 0.5) * 6;
+      heroDeco.style.transform = `translateY(-50%) translate(${dx * -0.4}px, ${dy * -0.4}px)`;
+      heroContent.style.transform = `translate(${dx * 0.15}px, ${dy * 0.15}px)`;
+    });
+
+    // ─── Form submission ────────────────────────────────────────
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('[type=submit]');
+      btn.textContent = 'Verzonden!';
+      btn.style.background = 'var(--gold)';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Offerte Aanvragen';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
