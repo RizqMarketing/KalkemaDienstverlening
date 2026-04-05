@@ -931,33 +931,103 @@
     footer {
       background: var(--dark);
       border-top: 1px solid var(--border);
-      padding: 3rem 4rem;
-      display: flex;
-      align-items: center; justify-content: space-between;
+    }
+    .footer-top {
+      padding: 6rem 4rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-top::before {
+      content: 'K';
+      position: absolute;
+      right: -1rem; bottom: -5rem;
+      font-family: var(--font-display);
+      font-size: 22vw;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(224,10,37,0.04);
+      pointer-events: none; user-select: none;
+      line-height: 0.85;
+    }
+    .footer-logo-wrap {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .footer-logo-mark {
+      width: 40px; height: 40px;
+      background: var(--orange);
+      clip-path: polygon(0 0, 100% 0, 100% 60%, 60% 100%, 0 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.1rem;
+      color: var(--black); flex-shrink: 0;
+    }
+    .footer-logo-name {
+      font-family: var(--font-cond); font-weight: 700;
+      font-size: 1.05rem; letter-spacing: 0.18em;
+      text-transform: uppercase; line-height: 1.2;
+    }
+    .footer-tagline {
+      font-size: 0.88rem; line-height: 1.75;
+      color: var(--muted); max-width: 280px;
+      margin-bottom: 2rem;
+    }
+    .footer-social { display: flex; gap: 0.6rem; }
+    .footer-social-btn {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      clip-path: polygon(0 0, 85% 0, 100% 15%, 100% 100%, 0 100%);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer-social-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .footer-col-title {
+      font-family: var(--font-cond); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .footer-col-title::before {
+      content: ''; display: block; width: 20px; height: 1px;
+      background: var(--orange);
+    }
+    .footer-nav-list { list-style: none; }
+    .footer-nav-list li a {
+      display: flex; align-items: center; gap: 8px;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-cond); font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .footer-nav-list li:first-child a { border-top: 1px solid var(--border); }
+    .footer-nav-list li a:hover { color: var(--cream); padding-left: 6px; }
+    .footer-nav-list li a svg { width: 10px; height: 10px; opacity: 0; flex-shrink: 0; transition: opacity 0.2s; margin-left: auto; }
+    .footer-nav-list li a:hover svg { opacity: 1; }
+    .footer-contact-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .footer-contact-item { display: flex; flex-direction: column; gap: 3px; }
+    .footer-contact-label {
+      font-family: var(--font-cond); font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--orange);
+    }
+    .footer-contact-value { font-size: 0.88rem; color: var(--cream); line-height: 1.5; }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
       gap: 2rem;
     }
-    .footer-logo {
-      font-family: var(--font-cond);
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-    .footer-copy {
-      font-size: 0.8rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
-    .footer-links {
+    .footer-copy { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
+    .footer-bottom-links {
       display: flex; gap: 2rem; list-style: none;
-      font-family: var(--font-cond);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      font-family: var(--font-cond); font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
     }
-    .footer-links a { color: var(--muted); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--orange); }
+    .footer-bottom-links a { color: var(--muted); transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--orange); }
 
     /* ─── Keyframes ──────────────────────────────────────────── */
     @keyframes fadeUp {
@@ -1000,7 +1070,7 @@
       nav { padding: 0 1.5rem; }
       .nav-links { display: none; }
       .hero-bar { display: none; }
-      .hero, .diensten, .over-ons, .werkwijze, .contact, footer {
+      .hero, .diensten, .over-ons, .werkwijze, .contact {
         padding-left: 1.5rem; padding-right: 1.5rem;
       }
       .diensten-grid { grid-template-columns: 1fr !important; }
@@ -1035,8 +1105,9 @@
       }
       .stap-num-wrap { width: 60px; height: 60px; margin-bottom: 1rem; }
       .stap-num { font-size: 1.4rem; }
-      footer { flex-direction: column; text-align: center; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem; }
+      .footer-bottom { flex-direction: column; text-align: center; padding: 1.5rem; }
+      .footer-bottom-links { flex-wrap: wrap; justify-content: center; }
     }
   </style>
 </head>
@@ -1156,7 +1227,7 @@
 
     <div class="diensten-grid" style="grid-template-columns: repeat(5, 1fr);">
       <!-- Grondwerk -->
-      <div class="dienst-card reveal reveal-delay-1">
+      <div class="dienst-card reveal reveal-delay-1" style="cursor:pointer;" onclick="window.location='grondwerk.html'">
         <div class="dienst-num" aria-hidden="true">01</div>
         <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M4 40h40M8 40V28l8-8 8 4 8-12 8 8V40"/>
@@ -1167,7 +1238,7 @@
         <p class="dienst-text">
           Afgraven, egaliseren, ophogen en saneren. Wij verzorgen alle grondwerkzaamheden voor bouw- en infraprojecten, groot en klein.
         </p>
-        <a href="#contact" class="dienst-link">
+        <a href="grondwerk.html" class="dienst-link">
           Meer info
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1176,7 +1247,7 @@
       </div>
 
       <!-- Machineverhuur -->
-      <div class="dienst-card reveal reveal-delay-2">
+      <div class="dienst-card reveal reveal-delay-2" style="cursor:pointer;" onclick="window.location='machineverhuur.html'">
         <div class="dienst-num" aria-hidden="true">02</div>
         <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="4" y="28" width="28" height="14" rx="1"/>
@@ -1198,7 +1269,7 @@
       </div>
 
       <!-- Straatwerk -->
-      <div class="dienst-card reveal reveal-delay-3">
+      <div class="dienst-card reveal reveal-delay-3" style="cursor:pointer;" onclick="window.location='straatwerk.html'">
         <div class="dienst-num" aria-hidden="true">03</div>
         <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M4 44h40"/>
@@ -1219,7 +1290,7 @@
       </div>
 
       <!-- Tuinaanleg -->
-      <div class="dienst-card reveal reveal-delay-4">
+      <div class="dienst-card reveal reveal-delay-4" style="cursor:pointer;" onclick="window.location='tuinaanleg.html'">
         <div class="dienst-num" aria-hidden="true">04</div>
         <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M24 44V24"/>
@@ -1239,7 +1310,7 @@
         </a>
       </div>
       <!-- Rijbodems & Longeercirkels -->
-      <div class="dienst-card reveal" style="transition-delay:0.5s">
+      <div class="dienst-card reveal" style="transition-delay:0.5s;cursor:pointer;" onclick="window.location='rijbodems.html'">
         <div class="dienst-num" aria-hidden="true">05</div>
         <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
           <circle cx="24" cy="24" r="18"/>
@@ -1384,7 +1455,7 @@
         <h2 class="section-title reveal reveal-delay-1">Wat klanten<br/>over ons zeggen</h2>
       </div>
       <div class="google-badge reveal reveal-delay-2">
-        <div class="google-badge-score">4.9</div>
+        <div class="google-badge-score">5.0</div>
         <div class="google-badge-right">
           <div class="google-badge-stars">
             <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1393,7 +1464,7 @@
             <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
-          <div class="google-badge-label">19 reviews · Google</div>
+          <div class="google-badge-label">20 reviews · Google</div>
         </div>
       </div>
     </div>
@@ -1585,13 +1656,82 @@
 
   <!-- ─── FOOTER ────────────────────────────────────────────── -->
   <footer>
-    <div class="footer-logo">Kalkema Dienstverlening</div>
-    <span class="footer-copy">&copy; 2025 Kalkema Dienstverlening — KvK 39063177. Alle rechten voorbehouden.</span>
-    <ul class="footer-links">
-      <li><a href="#">Privacy</a></li>
-      <li><a href="#">Algemene Voorwaarden</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="footer-top">
+
+      <!-- Brand -->
+      <div>
+        <div class="footer-logo-wrap">
+          <div class="footer-logo-mark">K</div>
+          <div class="footer-logo-name">Kalkema<br/>Dienstverlening</div>
+        </div>
+        <p class="footer-tagline">
+          Vakkundig grondverzet, bestrating, tuinaanleg en machineverhuur in Lelystad en omgeving. Voor particulieren én bedrijven — altijd eerlijk, snel en zonder verborgen kosten.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="footer-social-btn" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" class="footer-social-btn" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#" class="footer-social-btn" aria-label="WhatsApp">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Diensten -->
+      <div>
+        <div class="footer-col-title">Diensten</div>
+        <ul class="footer-nav-list">
+          <li><a href="grondwerk.html">Grondwerk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+          <li><a href="machineverhuur.html">Machineverhuur <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+          <li><a href="straatwerk.html">Straatwerk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+          <li><a href="tuinaanleg.html">Tuinaanleg <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+          <li><a href="rijbodems.html">Rijbodems &amp; Longeercirkels <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-list">
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Telefoon</span>
+            <span class="footer-contact-value">06-36106356</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">E-mail</span>
+            <span class="footer-contact-value">info@kalkemadienstverlening.nl</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Adres</span>
+            <span class="footer-contact-value">Hondsdraf 21, 8219 PW Lelystad</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">KvK</span>
+            <span class="footer-contact-value">39063177</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2025 Kalkema Dienstverlening. Alle rechten voorbehouden.</span>
+      <ul class="footer-bottom-links">
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="#">Algemene Voorwaarden</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
   </footer>
 
   <script>
