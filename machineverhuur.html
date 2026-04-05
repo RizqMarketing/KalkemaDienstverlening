@@ -22,8 +22,8 @@
     body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");background-size:180px;opacity:0.03;}
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;height:72px;background:transparent;transition:background 0.4s,border-bottom 0.4s;}
     nav.scrolled{background:rgba(7,7,7,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
-    .nav-logo{font-family:var(--font-cond);font-weight:700;font-size:1.15rem;letter-spacing:0.18em;text-transform:uppercase;display:flex;align-items:center;gap:12px;}
-    .nav-logo-mark{width:36px;height:36px;background:var(--orange);clip-path:polygon(0 0,100% 0,100% 60%,60% 100%,0 100%);display:flex;align-items:center;justify-content:center;font-size:0.85rem;color:var(--black);font-weight:900;}
+    .nav-logo{display:flex;align-items:center;}
+    .nav-logo img{height:90px;width:auto;filter:brightness(1.5) contrast(1.05);}
     .nav-links{display:flex;gap:2.5rem;list-style:none;font-family:var(--font-cond);font-weight:600;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;}
     .nav-links a{color:var(--muted);transition:color 0.2s;position:relative;}
     .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform 0.25s;}
@@ -32,7 +32,7 @@
     .nav-links a.active{color:var(--cream);}
     .nav-cta{background:var(--orange);color:var(--black);font-family:var(--font-cond);font-weight:700;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;padding:10px 22px;clip-path:polygon(0 0,100% 0,100% 65%,88% 100%,0 100%);transition:background 0.2s;cursor:pointer;border:none;}
     .nav-cta:hover{background:var(--cream);}
-    .hero{position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden;padding:0 4rem 6rem;}
+    .hero{position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden;padding:90px 4rem 6rem;}
     .hero-bg{position:absolute;inset:0;background:var(--black);}
     .hero-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(224,10,37,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(224,10,37,0.04) 1px,transparent 1px);background-size:60px 60px;}
     .hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 110%,rgba(224,10,37,0.12) 0%,transparent 65%),radial-gradient(ellipse 50% 70% at -10% 50%,rgba(184,144,80,0.06) 0%,transparent 60%),linear-gradient(180deg,transparent 40%,rgba(7,7,7,0.95) 100%);}
@@ -168,13 +168,12 @@
     footer{background:var(--dark);border-top:1px solid var(--border);}
     .footer-top{padding:6rem 4rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;position:relative;overflow:hidden;}
     .footer-top::before{content:'K';position:absolute;right:-1rem;bottom:-5rem;font-family:var(--font-display);font-size:22vw;color:transparent;-webkit-text-stroke:1px rgba(224,10,37,0.04);pointer-events:none;user-select:none;line-height:0.85;}
-    .footer-logo-wrap{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;}
-    .footer-logo-mark{width:40px;height:40px;background:var(--orange);clip-path:polygon(0 0,100% 0,100% 60%,60% 100%,0 100%);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.1rem;color:var(--black);flex-shrink:0;}
-    .footer-logo-name{font-family:var(--font-cond);font-weight:700;font-size:1.05rem;letter-spacing:0.18em;text-transform:uppercase;line-height:1.2;}
+    .footer-logo-wrap{margin-bottom:1.5rem;}
+    .footer-logo-wrap img{height:100px;width:auto;filter:brightness(1.5) contrast(1.05);}
     .footer-tagline{font-size:0.88rem;line-height:1.75;color:var(--muted);max-width:280px;margin-bottom:2rem;}
-    .footer-social{display:flex;gap:0.6rem;}
-    .footer-social-btn{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);clip-path:polygon(0 0,85% 0,100% 15%,100% 100%,0 100%);transition:border-color 0.2s,color 0.2s;}
-    .footer-social-btn:hover{border-color:var(--orange);color:var(--orange);}
+    .footer-made-by{font-size:0.72rem;color:var(--muted);}
+    .footer-made-by a{color:var(--muted);border-bottom:1px solid var(--border);transition:color 0.2s,border-color 0.2s;}
+    .footer-made-by a:hover{color:var(--orange);border-color:var(--orange);}
     .footer-col-title{font-family:var(--font-cond);font-size:0.68rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--orange);margin-bottom:1.5rem;display:flex;align-items:center;gap:8px;}
     .footer-col-title::before{content:'';display:block;width:20px;height:1px;background:var(--orange);}
     .footer-nav-list{list-style:none;}
@@ -224,12 +223,12 @@
     .reveal.visible{opacity:1;transform:translateY(0);}
     .reveal-delay-1{transition-delay:0.06s;}.reveal-delay-2{transition-delay:0.12s;}.reveal-delay-3{transition-delay:0.18s;}.reveal-delay-4{transition-delay:0.24s;}
     @media(max-width:1100px){.werkzaamheden-grid{grid-template-columns:repeat(2,1fr);}.stappen{grid-template-columns:repeat(3,1fr);gap:2rem;}.stappen::after{display:none;}.stap{padding:0;}.diensten-nav{grid-template-columns:repeat(2,1fr);}.doelgroep-grid{grid-template-columns:1fr;}.reviews-grid{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:768px){nav{padding:0 1.5rem;}.nav-links{display:none;}.hero-bar{display:none;}.hero,.wat-doen,.doelgroep,.werkwijze,.reviews,.contact-cta,.andere-diensten,footer{padding-left:1.5rem;padding-right:1.5rem;}.hero{padding-bottom:4rem;}.werkzaamheden-grid{grid-template-columns:1fr;}.doelgroep-card{padding:2.5rem 2rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}.diensten-nav{grid-template-columns:1fr;}.reviews-grid{grid-template-columns:1fr;}.stappen{grid-template-columns:1fr;gap:0;padding-left:2rem;border-left:2px solid var(--border);}.stappen::after{display:none;}.stap{padding:0 0 2.5rem 2rem;}.stap:last-child{padding-bottom:0;}.stap::before{content:'';position:absolute;left:-9px;top:24px;width:16px;height:16px;background:var(--surface);border:2px solid var(--orange);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}.footer-top{grid-template-columns:1fr;gap:2.5rem;padding:3rem 1.5rem;}.footer-bottom{flex-direction:column;text-align:center;padding:1.5rem;}.footer-bottom-links{flex-wrap:wrap;justify-content:center;}.section-header{flex-direction:column;}.modal-row{grid-template-columns:1fr;}.modal-header{padding:1.5rem;}.modal-body{padding:1.5rem;}}
+    @media(max-width:768px){nav{padding:0 1.5rem;}.nav-links{display:none;}.hero-bar{display:none;}.hero,.wat-doen,.doelgroep,.werkwijze,.reviews,.contact-cta,.andere-diensten,footer{padding-left:1.5rem;padding-right:1.5rem;}.hero{padding-top:90px;padding-bottom:4rem;}.werkzaamheden-grid{grid-template-columns:1fr;}.doelgroep-card{padding:2.5rem 2rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}.diensten-nav{grid-template-columns:1fr;}.reviews-grid{grid-template-columns:1fr;}.stappen{grid-template-columns:1fr;gap:0;padding-left:2rem;border-left:2px solid var(--border);}.stappen::after{display:none;}.stap{padding:0 0 2.5rem 2rem;}.stap:last-child{padding-bottom:0;}.stap::before{content:'';position:absolute;left:-9px;top:24px;width:16px;height:16px;background:var(--surface);border:2px solid var(--orange);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}.footer-top{grid-template-columns:1fr;gap:2.5rem;padding:3rem 1.5rem;}.footer-bottom{flex-direction:column;text-align:center;padding:1.5rem;}.footer-bottom-links{flex-wrap:wrap;justify-content:center;}.section-header{flex-direction:column;}.modal-row{grid-template-columns:1fr;}.modal-header{padding:1.5rem;}.modal-body{padding:1.5rem;}}
   </style>
 </head>
 <body>
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">K</div>Kalkema Dienstverlening</a>
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Kalkema Dienstverlening" /></a>
     <ul class="nav-links">
       <li><a href="index.html#diensten" class="active">Diensten</a></li>
       <li><a href="index.html#over-ons">Over Ons</a></li>
@@ -249,7 +248,6 @@
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
         <span>Machineverhuur</span>
       </div>
-      <div class="hero-label">Dienst 02 — Machinepark</div>
       <h1 class="hero-title">
         <span>Machine</span>
         <span>verhuur</span>
@@ -510,13 +508,8 @@
   <footer>
     <div class="footer-top">
       <div>
-        <div class="footer-logo-wrap"><div class="footer-logo-mark">K</div><div class="footer-logo-name">Kalkema<br/>Dienstverlening</div></div>
+        <div class="footer-logo-wrap"><img src="logo.png" alt="Kalkema Dienstverlening" /></div>
         <p class="footer-tagline">Vakkundig grondverzet, bestrating, tuinaanleg en machineverhuur in Lelystad en omgeving. Voor particulieren én bedrijven — altijd eerlijk, snel en zonder verborgen kosten.</p>
-        <div class="footer-social">
-          <a href="#" class="footer-social-btn" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-          <a href="#" class="footer-social-btn" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#" class="footer-social-btn" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-        </div>
       </div>
       <div>
         <div class="footer-col-title">Diensten</div>
@@ -539,12 +532,13 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2025 Kalkema Dienstverlening. Alle rechten voorbehouden.</span>
+      <span class="footer-copy">&copy; 2026 Kalkema Dienstverlening. Alle rechten voorbehouden.</span>
       <ul class="footer-bottom-links">
         <li><a href="privacy.html">Privacy</a></li>
         <li><a href="#">Algemene Voorwaarden</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
+      <span class="footer-made-by">Gebouwd door <a href="https://yoursystem.agency" target="_blank" rel="noopener">YourSystem.agency</a></span>
     </div>
   </footer>
 
