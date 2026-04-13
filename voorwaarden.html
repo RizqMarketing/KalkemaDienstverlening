@@ -56,24 +56,28 @@
     .toc-updated-label{font-family:var(--font-cond);font-size:0.62rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:4px;}
     .toc-updated-date{font-size:0.85rem;color:var(--cream);}
 
-    .privacy-sections{display:flex;flex-direction:column;gap:4rem;}
-    .privacy-section{padding-bottom:4rem;border-bottom:1px solid var(--border);}
-    .privacy-section:last-child{border-bottom:none;padding-bottom:0;}
-    .section-num{font-family:var(--font-display);font-size:4rem;color:var(--orange);line-height:1;margin-bottom:0.5rem;display:block;letter-spacing:0.02em;}
-    .section-heading{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,3rem);text-transform:uppercase;color:var(--cream);margin-bottom:1.5rem;line-height:0.95;}
+    .privacy-sections{display:block;}
+    .privacy-section{padding:0;border:none;margin-bottom:2.25rem;}
+    .privacy-section:last-child{margin-bottom:0;}
+    .section-num{display:none;}
+    .section-heading{font-family:var(--font-cond);font-size:1.15rem;font-weight:700;letter-spacing:0.02em;text-transform:none;color:var(--cream);margin-bottom:0.75rem;line-height:1.3;border-left:3px solid var(--orange);padding-left:0.85rem;}
     .section-heading span{color:var(--orange);}
-    .prose{display:flex;flex-direction:column;gap:1rem;}
-    .prose p{font-size:0.95rem;line-height:1.8;color:var(--muted);}
-    .prose strong{color:var(--cream);font-weight:500;}
+    .prose{display:block;}
+    .prose p{font-size:0.95rem;line-height:1.75;color:var(--cream);opacity:0.85;margin-bottom:0.6rem;}
+    .prose strong{color:var(--cream);font-weight:600;opacity:1;}
     .prose a{color:var(--orange);text-decoration:underline;text-underline-offset:3px;}
     .prose a:hover{color:var(--cream);}
-    .prose ul,.prose ol{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
-    .prose li{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;line-height:1.7;color:var(--muted);padding:0.6rem 0;border-bottom:1px solid var(--border);}
-    .prose li:first-child{border-top:1px solid var(--border);}
-    .prose li::before{content:'';display:block;width:6px;height:6px;background:var(--orange);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;margin-top:0.45rem;}
-    .info-block{background:var(--surface);border-left:3px solid var(--orange);padding:1.5rem 1.75rem;margin-top:0.5rem;}
-    .info-block p{font-size:0.9rem;line-height:1.7;color:var(--muted);}
+    .prose ol{list-style:decimal;padding-left:1.4rem;margin:0;}
+    .prose ol li{font-size:0.95rem;line-height:1.75;color:var(--cream);opacity:0.85;padding:0.25rem 0;border:none;display:list-item;}
+    .prose ol li::before{display:none;}
+    .prose ol li::marker{color:var(--orange);font-weight:700;}
+    .prose ul{list-style:none;padding-left:0;margin:0;}
+    .prose ul li{font-size:0.95rem;line-height:1.75;color:var(--cream);opacity:0.85;padding:0.2rem 0;border:none;display:flex;align-items:flex-start;gap:0.6rem;}
+    .prose ul li::before{content:'';display:block;width:5px;height:5px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:0.7rem;}
+    .info-block{background:var(--surface);border-left:3px solid var(--orange);padding:1.1rem 1.3rem;margin-top:1rem;}
+    .info-block p{font-size:0.88rem;line-height:1.65;color:var(--muted);margin:0;}
     .info-block strong{color:var(--cream);}
+    .doc-title{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--cream);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:2rem;padding-bottom:1rem;border-bottom:2px solid var(--orange);}
 
     footer{background:var(--dark);border-top:1px solid var(--border);}
     .footer-top{padding:6rem 4rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;position:relative;overflow:hidden;}
@@ -145,124 +149,108 @@
   <div class="privacy-content">
     <div class="privacy-grid">
 
-      <main class="privacy-sections">
+      <main class="privacy-sections reveal">
 
-        <div class="privacy-section reveal">
-          <div class="prose">
-            <p>Deze algemene voorwaarden gelden voor alle offertes, werkzaamheden en overeenkomsten van <strong>Kalkema Dienstverlening</strong>. Door een offerte aan te vragen of een opdracht te verstrekken stemt u in met deze voorwaarden.</p>
-            <div class="info-block">
-              <p>Vragen over deze voorwaarden? Neem contact op via <strong><a href="mailto:info@kalkemadienstverlening.nl">info@kalkemadienstverlening.nl</a></strong> of <strong><a href="tel:0636106356">06-36106356</a></strong>.</p>
-            </div>
-          </div>
-        </div>
+        <div class="doc-title">Algemene Voorwaarden Kalkema Dienstverlening</div>
 
-        <div class="privacy-section reveal" id="artikel-1">
-          <span class="section-num">01</span>
-          <h2 class="section-heading">Toepassing</h2>
+        <div class="privacy-section" id="artikel-1">
+          <h2 class="section-heading">Artikel 1 <span>–</span> Toepassing</h2>
           <div class="prose">
-            <ul>
+            <ol>
               <li>Deze algemene voorwaarden zijn van toepassing op alle offertes, werkzaamheden en overeenkomsten van Kalkema Dienstverlening.</li>
               <li>Afwijkingen of aanvullingen zijn alleen geldig als dit schriftelijk is bevestigd.</li>
-            </ul>
+            </ol>
           </div>
         </div>
 
-        <div class="privacy-section reveal" id="artikel-2">
-          <span class="section-num">02</span>
-          <h2 class="section-heading">Offertes &amp; <span>opdrachten</span></h2>
+        <div class="privacy-section" id="artikel-2">
+          <h2 class="section-heading">Artikel 2 <span>–</span> Offertes en opdrachten</h2>
           <div class="prose">
-            <ul>
+            <ol>
               <li>Alle offertes zijn vrijblijvend, tenzij schriftelijk anders vermeld.</li>
               <li>Een overeenkomst komt tot stand zodra Kalkema Dienstverlening de opdracht schriftelijk bevestigt, de werkzaamheden start en de opdrachtgever een getekende offerte als opdrachtbevestiging heeft geretourneerd. Werkzaamheden starten pas nadat aan de betalingsverplichtingen zoals overeengekomen is voldaan.</li>
-            </ul>
+            </ol>
           </div>
         </div>
 
-        <div class="privacy-section reveal" id="artikel-3">
-          <span class="section-num">03</span>
-          <h2 class="section-heading">Uitvoering van de <span>werkzaamheden</span></h2>
+        <div class="privacy-section" id="artikel-3">
+          <h2 class="section-heading">Artikel 3 <span>–</span> Uitvoering van de werkzaamheden</h2>
           <div class="prose">
-            <ul>
+            <ol>
               <li>Kalkema Dienstverlening voert de werkzaamheden naar beste inzicht en vermogen uit, conform de geldende regels en richtlijnen.</li>
               <li>Wij kunnen werkzaamheden door derden laten uitvoeren.</li>
               <li>De opdrachtgever zorgt voor tijdige toegang tot het werkgebied en verstrekt alle noodzakelijke informatie.</li>
-            </ul>
+            </ol>
           </div>
         </div>
 
-        <div class="privacy-section reveal" id="artikel-4">
-          <span class="section-num">04</span>
-          <h2 class="section-heading">Prijzen &amp; <span>betaling</span></h2>
+        <div class="privacy-section" id="artikel-4">
+          <h2 class="section-heading">Artikel 4 <span>–</span> Prijzen en betaling</h2>
           <div class="prose">
-            <ul>
+            <ol>
               <li>Alle prijzen zijn in euro's en exclusief btw, tenzij anders vermeld.</li>
               <li>Voor particulieren geldt betaling per omgaande, tenzij anders vermeld in de offerte.</li>
               <li>Voor bedrijven geldt een betalingstermijn van 14 dagen, tenzij anders overeengekomen.</li>
               <li>Voor opdrachten met afgesproken termijnen geldt dat de eerste termijn voldaan moet zijn vóór aanvang van de werkzaamheden, tenzij anders vermeld in de offerte.</li>
               <li>Facturen dienen binnen de afgesproken termijn betaald te worden.</li>
               <li>Bij te late betaling is de opdrachtgever in verzuim en zijn wettelijke rente en incassokosten verschuldigd.</li>
-            </ul>
+            </ol>
           </div>
         </div>
 
-        <div class="privacy-section reveal" id="artikel-5">
-          <span class="section-num">05</span>
-          <h2 class="section-heading">Annulering &amp; <span>wijziging</span></h2>
+        <div class="privacy-section" id="artikel-5">
+          <h2 class="section-heading">Artikel 5 <span>–</span> Annulering en wijziging</h2>
           <div class="prose">
-            <ul>
+            <ol>
               <li>Opdrachtgever kan een opdracht annuleren of wijzigen.</li>
-              <li><strong>Meer dan 7 dagen voor de afgesproken startdatum:</strong> alleen aantoonbare kosten voor materiaal en voorbereidingen worden in rekening gebracht.</li>
-              <li><strong>Minder dan 7 dagen voor de afgesproken startdatum:</strong> volledige kosten van besteld of ingekocht materiaal en een redelijke vergoeding voor voorbereiding worden in rekening gebracht.</li>
+              <li>Annulering of wijziging meer dan 7 dagen voor de afgesproken startdatum: alleen aantoonbare kosten voor materiaal en voorbereidingen worden in rekening gebracht.</li>
+              <li>Annulering of wijziging minder dan 7 dagen voor de afgesproken startdatum: volledige kosten van besteld of ingekocht materiaal en een redelijke vergoeding voor voorbereiding worden in rekening gebracht.</li>
               <li>Kalkema Dienstverlening kan een opdracht annuleren bij omstandigheden buiten haar controle; betaalde bedragen worden in dat geval gerestitueerd.</li>
               <li>Alle afspraken over annulering of wijziging dienen schriftelijk of per e-mail bevestigd te worden.</li>
-            </ul>
+            </ol>
           </div>
         </div>
 
-        <div class="privacy-section reveal" id="artikel-6">
-          <span class="section-num">06</span>
-          <h2 class="section-heading">Aansprakelijkheid &amp; <span>garantie</span></h2>
+        <div class="privacy-section" id="artikel-6">
+          <h2 class="section-heading">Artikel 6 <span>–</span> Aansprakelijkheid en garantie</h2>
           <div class="prose">
-            <ul>
+            <ol>
               <li>Kalkema Dienstverlening is alleen aansprakelijk voor directe schade die het gevolg is van opzet of grove nalatigheid.</li>
               <li>Wij zijn niet aansprakelijk voor indirecte schade, gevolgschade of gederfde winst; verzakken, beschadigen of andere gevolgen van bestaande leidingen, kabels of infrastructuur; bestaand straatwerk, bestrating of ander werk dat al aanwezig is; bestaand leiding- of kabelwerk van derden of van de opdrachtgever.</li>
               <li>Kalkema Dienstverlening geeft geen garantie op bestaand werk, bestaand straatwerk, bestaande kabels of leidingwerk van de opdrachtgever of derden.</li>
               <li>Opdrachtgever vrijwaart Kalkema Dienstverlening tegen aanspraken van derden die verband houden met de uitvoering van de werkzaamheden.</li>
-            </ul>
+            </ol>
           </div>
         </div>
 
-        <div class="privacy-section reveal" id="artikel-7">
-          <span class="section-num">07</span>
-          <h2 class="section-heading">Overmacht</h2>
+        <div class="privacy-section" id="artikel-7">
+          <h2 class="section-heading">Artikel 7 <span>–</span> Overmacht</h2>
           <div class="prose">
-            <ul>
+            <ol>
               <li>Onder overmacht verstaan wij iedere omstandigheid buiten onze macht waardoor nakoming van de overeenkomst tijdelijk of blijvend onmogelijk is, zoals storm, extreme weersomstandigheden, ziekte, materiaaltekort of overheidsmaatregelen.</li>
               <li>In geval van overmacht worden de verplichtingen opgeschort of kan de overeenkomst geheel of gedeeltelijk worden ontbonden zonder schadeplicht.</li>
-            </ul>
+            </ol>
           </div>
         </div>
 
-        <div class="privacy-section reveal" id="artikel-8">
-          <span class="section-num">08</span>
-          <h2 class="section-heading">Geschillen</h2>
+        <div class="privacy-section" id="artikel-8">
+          <h2 class="section-heading">Artikel 8 <span>–</span> Geschillen</h2>
           <div class="prose">
-            <ul>
+            <ol>
               <li>Op alle overeenkomsten is Nederlands recht van toepassing.</li>
               <li>Geschillen lossen wij bij voorkeur in overleg op.</li>
               <li>Indien overleg geen oplossing biedt, is de bevoegde rechter in het arrondissement Lelystad bevoegd.</li>
-            </ul>
+            </ol>
           </div>
         </div>
 
-        <div class="privacy-section reveal" id="artikel-9">
-          <span class="section-num">09</span>
-          <h2 class="section-heading">Slotbepalingen</h2>
+        <div class="privacy-section" id="artikel-9">
+          <h2 class="section-heading">Artikel 9 <span>–</span> Slotbepalingen</h2>
           <div class="prose">
-            <ul>
+            <ol>
               <li>Indien enige bepaling van deze algemene voorwaarden nietig of vernietigbaar is, blijven de overige bepalingen volledig van kracht.</li>
               <li>Kalkema Dienstverlening behoudt zich het recht voor deze voorwaarden te wijzigen.</li>
-            </ul>
+            </ol>
             <div class="info-block">
               <p><strong>Kalkema Dienstverlening</strong><br/>Hondsdraf 21, 8219 PW Lelystad &nbsp;·&nbsp; KvK 39063177<br/><a href="tel:0636106356">06-36106356</a> &nbsp;·&nbsp; <a href="mailto:info@kalkemadienstverlening.nl">info@kalkemadienstverlening.nl</a></p>
             </div>
