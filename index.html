@@ -1669,7 +1669,7 @@
           </div>
           <div class="contact-info-item">
             <span class="contact-info-label">E-mail</span>
-            <a href="mailto:info@kalkemadienstverlening.nl" style="color:inherit;">info@kalkemadienstverlening.nl</a>
+            <a href="mailto:Kalkemadienstverlening@hotmail.com" style="color:inherit;">Kalkemadienstverlening@hotmail.com</a>
           </div>
           <div class="contact-info-item">
             <span class="contact-info-label">Adres</span>
@@ -1759,7 +1759,7 @@
           </div>
           <div class="footer-contact-item">
             <span class="footer-contact-label">E-mail</span>
-            <span class="footer-contact-value">info@kalkemadienstverlening.nl</span>
+            <span class="footer-contact-value">Kalkemadienstverlening@hotmail.com</span>
           </div>
           <div class="footer-contact-item">
             <span class="footer-contact-label">Adres</span>
@@ -1862,15 +1862,50 @@
     function handleSubmit(e) {
       e.preventDefault();
       const btn = e.target.querySelector('[type=submit]');
-      btn.textContent = 'Verzonden!';
-      btn.style.background = 'var(--gold)';
+      const orig = btn.textContent;
       btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = 'Offerte Aanvragen';
-        btn.style.background = '';
-        btn.disabled = false;
-        e.target.reset();
-      }, 3000);
+      btn.textContent = 'Versturen...';
+
+      const naam = (document.getElementById('naam').value || '').trim();
+      const parts = naam.split(/\s+/);
+      const voornaam = parts.shift() || '';
+      const achternaam = parts.join(' ');
+
+      const params = {
+        voornaam: voornaam,
+        achternaam: achternaam,
+        telefoon: (document.getElementById('telefoon').value || '').trim(),
+        email: (document.getElementById('email').value || '').trim(),
+        dienst: document.getElementById('dienst').value || 'Niet opgegeven',
+        klanttype: 'Via contactformulier',
+        bericht: (document.getElementById('bericht').value || '').trim(),
+        pagina: 'index.html (contactsectie)',
+        datum: new Date().toLocaleString('nl-NL')
+      };
+
+      if (!window.kmSendEmail) {
+        alert('E-mailservice nog niet geladen, probeer over een paar seconden opnieuw.');
+        btn.disabled = false; btn.textContent = orig;
+        return;
+      }
+
+      window.kmSendEmail(params)
+        .then(function(){
+          btn.textContent = 'Verzonden!';
+          btn.style.background = 'var(--gold)';
+          setTimeout(function(){
+            btn.textContent = orig;
+            btn.style.background = '';
+            btn.disabled = false;
+            e.target.reset();
+          }, 3000);
+        })
+        .catch(function(err){
+          console.error('EmailJS error:', err);
+          btn.textContent = orig;
+          btn.disabled = false;
+          alert('Er ging iets mis bij het versturen. Bel ons op 06-36106356 of mail Kalkemadienstverlening@hotmail.com.');
+        });
     }
   </script>
   <script src="modal.js"></script>

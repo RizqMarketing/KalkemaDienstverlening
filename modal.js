@@ -375,6 +375,25 @@
     return 'logo.png';
   }
 
+  /* ── EmailJS config ───────────────────────────────────────────── */
+  const EMAILJS_PUBLIC_KEY = 'AkxqSSqEoUhyJYmHc';
+  const EMAILJS_SERVICE_ID = 'service_9qqqrnv';
+  const EMAILJS_TEMPLATE_ID = 'template_jxrth5z';
+
+  (function loadEmailJS(){
+    if (window.emailjs) { window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); return; }
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    s.onload = function(){ if (window.emailjs) window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); };
+    document.head.appendChild(s);
+  })();
+
+  /* ── Shared sender ────────────────────────────────────────────── */
+  window.kmSendEmail = function (params) {
+    if (!window.emailjs) return Promise.reject(new Error('EmailJS niet geladen'));
+    return window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+  };
+
   /* ── Inject ───────────────────────────────────────────────────── */
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
@@ -419,8 +438,35 @@
     e.preventDefault();
     const form = document.getElementById('kmForm');
     const success = document.getElementById('kmSuccess');
-    if (form) form.style.display = 'none';
-    if (success) success.classList.add('show');
+    const submitBtn = form ? form.querySelector('.km-submit') : null;
+    if (!form) return;
+
+    const data = new FormData(form);
+    const params = {
+      voornaam: (data.get('voornaam') || '').trim(),
+      achternaam: (data.get('achternaam') || '').trim(),
+      telefoon: (data.get('telefoon') || '').trim(),
+      email: (data.get('email') || '').trim(),
+      dienst: data.get('dienst') || 'Niet opgegeven',
+      klanttype: data.get('klanttype') || 'Niet opgegeven',
+      bericht: (data.get('omschrijving') || '').trim() || '(geen omschrijving meegegeven)',
+      pagina: location.pathname.split('/').pop() || 'index.html',
+      datum: new Date().toLocaleString('nl-NL')
+    };
+
+    const originalText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Versturen...'; }
+
+    window.kmSendEmail(params)
+      .then(function(){
+        form.style.display = 'none';
+        if (success) success.classList.add('show');
+      })
+      .catch(function(err){
+        console.error('EmailJS error:', err);
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
+        alert('Er ging iets mis bij het versturen. Bel ons op 06-36106356 of mail Kalkemadienstverlening@hotmail.com.');
+      });
   };
 
   // ESC key
