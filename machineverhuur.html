@@ -30,6 +30,15 @@
     .nav-links a:hover{color:var(--cream);}
     .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
     .nav-links a.active{color:var(--cream);}
+    .nav-links li.has-dropdown{position:relative;}
+    .nav-links li.has-dropdown > a::before{content:'\25BE';display:inline-block;margin-left:6px;font-size:0.7em;opacity:0.7;}
+    .nav-dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);min-width:230px;background:var(--dark);border:1px solid var(--border);border-top:2px solid var(--orange);box-shadow:0 18px 40px rgba(0,0,0,0.55);list-style:none;padding:8px 0;margin:0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.2s ease,transform 0.2s ease,visibility 0.2s;z-index:1000;}
+    .nav-links li.has-dropdown:hover > .nav-dropdown,.nav-links li.has-dropdown:focus-within > .nav-dropdown{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+    .nav-dropdown li{display:block;}
+    .nav-dropdown a{display:block;padding:10px 18px;color:var(--muted);font-family:var(--font-cond);font-weight:500;font-size:0.78rem;letter-spacing:0.06em;text-transform:none;white-space:nowrap;transition:background 0.18s,color 0.18s;}
+    .nav-dropdown a::after{display:none !important;}
+    .nav-dropdown a:hover{color:var(--cream);background:var(--surface);}
+    .nav-dropdown a.active{color:var(--cream);background:var(--surface2);border-left:2px solid var(--orange);padding-left:16px;}
     .nav-cta{background:var(--orange);color:var(--black);font-family:var(--font-cond);font-weight:700;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;padding:10px 22px;clip-path:polygon(0 0,100% 0,100% 65%,88% 100%,0 100%);transition:background 0.2s;cursor:pointer;border:none;}
     .nav-cta:hover{background:var(--cream);}
     .hero{position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden;padding:90px 4rem 6rem;}
@@ -216,7 +225,16 @@
     <a href="index.html" class="nav-logo"><img src="logo.png" alt="Kalkema Dienstverlening" /></a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#diensten" class="active">Diensten</a></li>
+      <li class="has-dropdown">
+        <a href="index.html#diensten" class="active">Diensten</a>
+        <ul class="nav-dropdown">
+          <li><a href="grondwerk.html">Grondwerk</a></li>
+          <li><a href="machineverhuur.html" class="active">Machineverhuur</a></li>
+          <li><a href="straatwerk.html">Straatwerk</a></li>
+          <li><a href="tuinaanleg.html">Tuinaanleg</a></li>
+          <li><a href="rijbodems.html">Rijbodems &amp; Longeercirkels</a></li>
+        </ul>
+      </li>
       <li><a href="index.html#over-ons">Over Ons</a></li>
       <li><a href="index.html#werkwijze">Werkwijze</a></li>
       <li><a href="index.html#contact">Contact</a></li>
@@ -299,7 +317,7 @@
         <div class="section-label reveal">Ons machinepark</div>
         <h2 class="section-title reveal reveal-delay-1">Wat wij<br/>verhuren</h2>
       </div>
-      <p class="section-desc reveal reveal-delay-2">Van kleine minigraver voor tuinwerk tot grote graafmachines voor bouwprojecten — wij hebben de juiste machine voor elk klus, groot of klein.</p>
+      <p class="section-desc reveal reveal-delay-2">Wij beschikken over verschillende soorten machines voor uiteenlopende werkzaamheden. Neem contact op voor de actuele mogelijkheden en wat past bij uw project.</p>
     </div>
     <div class="werkzaamheden-grid">
       <div class="werkzaamheid-card reveal reveal-delay-1">
@@ -307,16 +325,16 @@
           <rect x="4" y="28" width="28" height="14" rx="1"/><path d="M32 34h8l4-8V22H32v12z"/>
           <circle cx="12" cy="42" r="4"/><circle cx="36" cy="42" r="4"/><path d="M4 34V20l8-6h12l8 10"/>
         </svg>
-        <div class="wk-title">Graafmachine</div>
-        <p class="wk-text">Hydraulische rupskranen van 1,5 tot 8 ton voor grondverzet, sloopwerk en grondwerk op uw perceel of bouwterrein.</p>
+        <div class="wk-title">Grondverzet &amp; graafwerk</div>
+        <p class="wk-text">Inzetbaar voor grondverzet, sloopwerk en grondwerk op uw perceel of bouwterrein. Wij bekijken samen welke uitvoering past bij uw klus.</p>
       </div>
       <div class="werkzaamheid-card reveal reveal-delay-2">
         <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="8" y="30" width="20" height="12" rx="1"/><path d="M28 36h6l3-6v-6h-9v12z"/>
           <circle cx="14" cy="42" r="4"/><circle cx="30" cy="42" r="4"/><path d="M8 36V26l5-4h9l6 8"/>
         </svg>
-        <div class="wk-title">Minigraver</div>
-        <p class="wk-text">Compacte minigravers (0,8–1,5 ton) ideaal voor smalle doorgangen, tuinen en werken dicht bij gevels zonder beschadigingen.</p>
+        <div class="wk-title">Werk in krappe ruimtes</div>
+        <p class="wk-text">Compacte uitvoering voor smalle doorgangen, tuinen en werken dicht bij gevels, zonder onnodige beschadigingen aan de omgeving.</p>
       </div>
       <div class="werkzaamheid-card reveal reveal-delay-3">
         <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -324,8 +342,8 @@
           <circle cx="12" cy="38" r="4"/><circle cx="32" cy="38" r="4"/>
           <path d="M4 28h36M16 20V14h12v6"/>
         </svg>
-        <div class="wk-title">Dumptruck</div>
-        <p class="wk-text">Dumptrucks voor het snel en efficiënt afvoeren van grond, puin en materialen. Verhuur met of zonder chauffeur.</p>
+        <div class="wk-title">Transport &amp; afvoer</div>
+        <p class="wk-text">Voor het afvoeren en verplaatsen van grond, puin en materialen. Informeer naar de mogelijkheden voor uw project.</p>
       </div>
       <div class="werkzaamheid-card reveal reveal-delay-4">
         <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -333,8 +351,8 @@
           <path d="M14 32v-8h20v8M18 24v-6h12v6"/>
           <path d="M4 44h40M24 40v4"/>
         </svg>
-        <div class="wk-title">Trilplaat &amp; stamper</div>
-        <p class="wk-text">Trilplaten en stampvoeten voor het verdichten van zand, grond en fundering onder bestratingswerkzaamheden.</p>
+        <div class="wk-title">Verdichting</div>
+        <p class="wk-text">Voor het verdichten van zand, grond en fundering onder bestratings- en grondwerkzaamheden.</p>
       </div>
       <div class="werkzaamheid-card reveal" style="transition-delay:0.3s">
         <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -342,8 +360,8 @@
           <circle cx="12" cy="42" r="4"/><circle cx="28" cy="42" r="4"/>
           <path d="M4 32V22l6-4h14l6 8"/>
         </svg>
-        <div class="wk-title">Shovel / Wiellader</div>
-        <p class="wk-text">Krachtige wielladers voor laden, schuiven en verplaatsen van grond, zand en granulaat. Ideaal voor grotere terreinen en doorloopwerk.</p>
+        <div class="wk-title">Laden &amp; verplaatsen</div>
+        <p class="wk-text">Voor laden, schuiven en verplaatsen van grond, zand en granulaat op terrein of projectlocatie.</p>
       </div>
       <div class="werkzaamheid-card reveal" style="transition-delay:0.36s">
         <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -384,7 +402,6 @@
           <p class="doelgroep-text">Aannemers en bouwbedrijven die tijdelijk extra capaciteit nodig hebben, kunnen bij ons terecht voor betrouwbare machines zonder vaste lasten. Flexibele huurperiodes.</p>
           <div class="doelgroep-list">
             <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Dag-, week- en maandhuur</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Grote graafmachines en trucks</div>
             <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Machinist beschikbaar indien gewenst</div>
             <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Snel inzetbaar voor piekprojecten</div>
             <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Onderaannemerschap mogelijk</div>
