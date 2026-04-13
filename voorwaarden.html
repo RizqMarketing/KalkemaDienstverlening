@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algemene Voorwaarden — Kalkema Dienstverlening</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--black:#070707;--dark:#0F0F0F;--surface:#161616;--surface2:#1E1E1C;--orange:#A62D1F;--cream:#EDE8DF;--muted:#5A5750;--border:#2A2A26;--font-display:'Bebas Neue',sans-serif;--font-cond:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--cream);font-family:var(--font-body);font-weight:300;overflow-x:hidden;}
+    a{color:inherit;text-decoration:none;}
+    body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");background-size:180px;opacity:0.03;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;height:72px;background:transparent;transition:background 0.4s,border-bottom 0.4s;}
+    nav.scrolled{background:rgba(7,7,7,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+    .nav-logo{display:flex;align-items:center;}
+    .nav-logo img{height:90px;width:auto;filter:brightness(1.5) contrast(1.05);}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;font-family:var(--font-cond);font-weight:600;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;}
+    .nav-links a{color:var(--muted);transition:color 0.2s;position:relative;}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform 0.25s;}
+    .nav-links a:hover{color:var(--cream);}
+    .nav-links a:hover::after{transform:scaleX(1);}
+    .nav-cta{background:var(--orange);color:var(--black);font-family:var(--font-cond);font-weight:700;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;padding:10px 22px;clip-path:polygon(0 0,100% 0,100% 65%,88% 100%,0 100%);transition:background 0.2s;cursor:pointer;border:none;}
+    .nav-cta:hover{background:var(--cream);}
+
+    .page-header{padding:10rem 4rem 5rem;position:relative;background:var(--black);overflow:hidden;}
+    .page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(224,10,37,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(224,10,37,0.04) 1px,transparent 1px);background-size:60px 60px;}
+    .page-header::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 100%,rgba(224,10,37,0.1) 0%,transparent 65%),linear-gradient(180deg,transparent 50%,rgba(7,7,7,0.9) 100%);}
+    .page-header-deco{position:absolute;right:-2vw;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-size:28vw;line-height:0.85;color:transparent;-webkit-text-stroke:1px rgba(224,10,37,0.05);user-select:none;pointer-events:none;}
+    .page-header-inner{position:relative;z-index:2;}
+    .page-header-label{font-family:var(--font-cond);font-size:0.72rem;font-weight:600;letter-spacing:0.35em;text-transform:uppercase;color:var(--orange);margin-bottom:1rem;display:flex;align-items:center;gap:10px;}
+    .page-header-label::before{content:'';display:block;width:24px;height:1px;background:var(--orange);}
+    .page-header-breadcrumb{font-family:var(--font-cond);font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;}
+    .page-header-breadcrumb a{color:var(--muted);transition:color 0.2s;}
+    .page-header-breadcrumb a:hover{color:var(--orange);}
+    .page-header-breadcrumb span{color:var(--orange);}
+    .page-header-title{font-family:var(--font-display);font-size:clamp(3.5rem,9vw,9rem);line-height:0.88;text-transform:uppercase;color:var(--cream);margin-bottom:1.5rem;}
+    .page-header-title span{color:var(--orange);}
+    .page-header-meta{font-family:var(--font-cond);font-size:0.78rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+
+    .privacy-content{background:var(--dark);padding:6rem 4rem;border-top:1px solid var(--border);}
+    .privacy-grid{display:grid;grid-template-columns:280px 1fr;gap:6rem;max-width:1200px;}
+
+    .toc{position:sticky;top:100px;align-self:start;}
+    .toc-title{font-family:var(--font-cond);font-size:0.68rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--orange);margin-bottom:1.25rem;display:flex;align-items:center;gap:8px;}
+    .toc-title::before{content:'';display:block;width:16px;height:1px;background:var(--orange);}
+    .toc-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+    .toc-list li a{display:block;padding:0.6rem 0;border-bottom:1px solid var(--border);font-family:var(--font-cond);font-size:0.82rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);transition:color 0.2s,padding-left 0.2s;}
+    .toc-list li:first-child a{border-top:1px solid var(--border);}
+    .toc-list li a:hover{color:var(--cream);padding-left:6px;}
+    .toc-updated{margin-top:2rem;padding:1.25rem;background:var(--surface);border-left:3px solid var(--orange);}
+    .toc-updated-label{font-family:var(--font-cond);font-size:0.62rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:4px;}
+    .toc-updated-date{font-size:0.85rem;color:var(--cream);}
+
+    .privacy-sections{display:flex;flex-direction:column;gap:4rem;}
+    .privacy-section{padding-bottom:4rem;border-bottom:1px solid var(--border);}
+    .privacy-section:last-child{border-bottom:none;padding-bottom:0;}
+    .section-num{font-family:var(--font-display);font-size:4rem;color:transparent;-webkit-text-stroke:1px rgba(224,10,37,0.15);line-height:1;margin-bottom:0.5rem;display:block;}
+    .section-heading{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,3rem);text-transform:uppercase;color:var(--cream);margin-bottom:1.5rem;line-height:0.95;}
+    .section-heading span{color:var(--orange);}
+    .prose{display:flex;flex-direction:column;gap:1rem;}
+    .prose p{font-size:0.95rem;line-height:1.8;color:var(--muted);}
+    .prose strong{color:var(--cream);font-weight:500;}
+    .prose a{color:var(--orange);text-decoration:underline;text-underline-offset:3px;}
+    .prose a:hover{color:var(--cream);}
+    .prose ul,.prose ol{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+    .prose li{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;line-height:1.7;color:var(--muted);padding:0.6rem 0;border-bottom:1px solid var(--border);}
+    .prose li:first-child{border-top:1px solid var(--border);}
+    .prose li::before{content:'';display:block;width:6px;height:6px;background:var(--orange);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0;margin-top:0.45rem;}
+    .info-block{background:var(--surface);border-left:3px solid var(--orange);padding:1.5rem 1.75rem;margin-top:0.5rem;}
+    .info-block p{font-size:0.9rem;line-height:1.7;color:var(--muted);}
+    .info-block strong{color:var(--cream);}
+
+    footer{background:var(--dark);border-top:1px solid var(--border);}
+    .footer-top{padding:6rem 4rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;position:relative;overflow:hidden;}
+    .footer-top::before{content:'K';position:absolute;right:-1rem;bottom:-5rem;font-family:var(--font-display);font-size:22vw;color:transparent;-webkit-text-stroke:1px rgba(224,10,37,0.04);pointer-events:none;user-select:none;line-height:0.85;}
+    .footer-logo-wrap{margin-bottom:1.5rem;}
+    .footer-logo-wrap img{height:100px;width:auto;filter:brightness(1.5) contrast(1.05);}
+    .footer-tagline{font-size:0.88rem;line-height:1.75;color:var(--muted);max-width:280px;margin-bottom:2rem;}
+    .footer-made-by{font-size:0.72rem;color:var(--muted);}
+    .footer-made-by a{color:var(--muted);border-bottom:1px solid var(--border);transition:color 0.2s,border-color 0.2s;}
+    .footer-made-by a:hover{color:var(--orange);border-color:var(--orange);}
+    .footer-col-title{font-family:var(--font-cond);font-size:0.68rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--orange);margin-bottom:1.5rem;display:flex;align-items:center;gap:8px;}
+    .footer-col-title::before{content:'';display:block;width:20px;height:1px;background:var(--orange);}
+    .footer-nav-list{list-style:none;}
+    .footer-nav-list li a{display:flex;align-items:center;gap:8px;padding:0.65rem 0;border-bottom:1px solid var(--border);font-family:var(--font-cond);font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);transition:color 0.2s,padding-left 0.2s;}
+    .footer-nav-list li:first-child a{border-top:1px solid var(--border);}
+    .footer-nav-list li a:hover{color:var(--cream);padding-left:6px;}
+    .footer-nav-list li a svg{width:10px;height:10px;opacity:0;flex-shrink:0;transition:opacity 0.2s;margin-left:auto;}
+    .footer-nav-list li a:hover svg{opacity:1;}
+    .footer-contact-list{display:flex;flex-direction:column;gap:1.25rem;}
+    .footer-contact-item{display:flex;flex-direction:column;gap:3px;}
+    .footer-contact-label{font-family:var(--font-cond);font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--orange);}
+    .footer-contact-value{font-size:0.88rem;color:var(--cream);line-height:1.5;}
+    .footer-bottom{border-top:1px solid var(--border);padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+    .footer-copy{font-size:0.75rem;color:var(--muted);letter-spacing:0.05em;}
+    .footer-bottom-links{display:flex;gap:2rem;list-style:none;font-family:var(--font-cond);font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;}
+    .footer-bottom-links a{color:var(--muted);transition:color 0.2s;}
+    .footer-bottom-links a:hover{color:var(--orange);}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity 0.4s ease,transform 0.4s cubic-bezier(0.16,1,0.3,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    @media(max-width:1100px){.privacy-grid{grid-template-columns:1fr;}.toc{position:static;}}
+    @media(max-width:768px){nav{padding:0 1.5rem;}.nav-links{display:none;}.page-header{padding:8rem 1.5rem 3rem;}.privacy-content{padding:4rem 1.5rem;}.footer-top{grid-template-columns:1fr;gap:2.5rem;padding:3rem 1.5rem;}.footer-bottom{flex-direction:column;text-align:center;padding:1.5rem;}.footer-bottom-links{flex-wrap:wrap;justify-content:center;}}
+  </style>
+</head>
+<body>
+
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Kalkema Dienstverlening" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#diensten">Diensten</a></li>
+      <li><a href="index.html#over-ons">Over Ons</a></li>
+      <li><a href="index.html#werkwijze">Werkwijze</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-cta">Offerte Aanvragen</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-deco" aria-hidden="true">A</div>
+    <div class="page-header-inner">
+      <div class="page-header-breadcrumb">
+        <a href="index.html">Home</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <span>Algemene Voorwaarden</span>
+      </div>
+      <div class="page-header-label">Juridisch — Algemene Voorwaarden</div>
+      <h1 class="page-header-title">Algemene<br/><span>Voorwaarden</span></h1>
+      <p class="page-header-meta">Versie 3 &nbsp;·&nbsp; Kalkema Dienstverlening</p>
+    </div>
+  </div>
+
+  <div class="privacy-content">
+    <div class="privacy-grid">
+
+      <aside class="toc">
+        <div class="toc-title">Inhoudsopgave</div>
+        <ul class="toc-list">
+          <li><a href="#artikel-1">1. Toepassing</a></li>
+          <li><a href="#artikel-2">2. Offertes &amp; opdrachten</a></li>
+          <li><a href="#artikel-3">3. Uitvoering</a></li>
+          <li><a href="#artikel-4">4. Prijzen &amp; betaling</a></li>
+          <li><a href="#artikel-5">5. Annulering &amp; wijziging</a></li>
+          <li><a href="#artikel-6">6. Aansprakelijkheid &amp; garantie</a></li>
+          <li><a href="#artikel-7">7. Overmacht</a></li>
+          <li><a href="#artikel-8">8. Geschillen</a></li>
+          <li><a href="#artikel-9">9. Slotbepalingen</a></li>
+        </ul>
+        <div class="toc-updated">
+          <div class="toc-updated-label">Versie</div>
+          <div class="toc-updated-date">v3</div>
+        </div>
+      </aside>
+
+      <main class="privacy-sections">
+
+        <div class="privacy-section reveal">
+          <div class="prose">
+            <p>Deze algemene voorwaarden gelden voor alle offertes, werkzaamheden en overeenkomsten van <strong>Kalkema Dienstverlening</strong>. Door een offerte aan te vragen of een opdracht te verstrekken stemt u in met deze voorwaarden.</p>
+            <div class="info-block">
+              <p>Vragen over deze voorwaarden? Neem contact op via <strong><a href="mailto:info@kalkemadienstverlening.nl">info@kalkemadienstverlening.nl</a></strong> of <strong><a href="tel:0636106356">06-36106356</a></strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="privacy-section reveal" id="artikel-1">
+          <span class="section-num">01</span>
+          <h2 class="section-heading">Toepassing</h2>
+          <div class="prose">
+            <ul>
+              <li>Deze algemene voorwaarden zijn van toepassing op alle offertes, werkzaamheden en overeenkomsten van Kalkema Dienstverlening.</li>
+              <li>Afwijkingen of aanvullingen zijn alleen geldig als dit schriftelijk is bevestigd.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="privacy-section reveal" id="artikel-2">
+          <span class="section-num">02</span>
+          <h2 class="section-heading">Offertes &amp; <span>opdrachten</span></h2>
+          <div class="prose">
+            <ul>
+              <li>Alle offertes zijn vrijblijvend, tenzij schriftelijk anders vermeld.</li>
+              <li>Een overeenkomst komt tot stand zodra Kalkema Dienstverlening de opdracht schriftelijk bevestigt, de werkzaamheden start en de opdrachtgever een getekende offerte als opdrachtbevestiging heeft geretourneerd. Werkzaamheden starten pas nadat aan de betalingsverplichtingen zoals overeengekomen is voldaan.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="privacy-section reveal" id="artikel-3">
+          <span class="section-num">03</span>
+          <h2 class="section-heading">Uitvoering van de <span>werkzaamheden</span></h2>
+          <div class="prose">
+            <ul>
+              <li>Kalkema Dienstverlening voert de werkzaamheden naar beste inzicht en vermogen uit, conform de geldende regels en richtlijnen.</li>
+              <li>Wij kunnen werkzaamheden door derden laten uitvoeren.</li>
+              <li>De opdrachtgever zorgt voor tijdige toegang tot het werkgebied en verstrekt alle noodzakelijke informatie.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="privacy-section reveal" id="artikel-4">
+          <span class="section-num">04</span>
+          <h2 class="section-heading">Prijzen &amp; <span>betaling</span></h2>
+          <div class="prose">
+            <ul>
+              <li>Alle prijzen zijn in euro's en exclusief btw, tenzij anders vermeld.</li>
+              <li>Voor particulieren geldt betaling per omgaande, tenzij anders vermeld in de offerte.</li>
+              <li>Voor bedrijven geldt een betalingstermijn van 14 dagen, tenzij anders overeengekomen.</li>
+              <li>Voor opdrachten met afgesproken termijnen geldt dat de eerste termijn voldaan moet zijn vóór aanvang van de werkzaamheden, tenzij anders vermeld in de offerte.</li>
+              <li>Facturen dienen binnen de afgesproken termijn betaald te worden.</li>
+              <li>Bij te late betaling is de opdrachtgever in verzuim en zijn wettelijke rente en incassokosten verschuldigd.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="privacy-section reveal" id="artikel-5">
+          <span class="section-num">05</span>
+          <h2 class="section-heading">Annulering &amp; <span>wijziging</span></h2>
+          <div class="prose">
+            <ul>
+              <li>Opdrachtgever kan een opdracht annuleren of wijzigen.</li>
+              <li><strong>Meer dan 7 dagen voor de afgesproken startdatum:</strong> alleen aantoonbare kosten voor materiaal en voorbereidingen worden in rekening gebracht.</li>
+              <li><strong>Minder dan 7 dagen voor de afgesproken startdatum:</strong> volledige kosten van besteld of ingekocht materiaal en een redelijke vergoeding voor voorbereiding worden in rekening gebracht.</li>
+              <li>Kalkema Dienstverlening kan een opdracht annuleren bij omstandigheden buiten haar controle; betaalde bedragen worden in dat geval gerestitueerd.</li>
+              <li>Alle afspraken over annulering of wijziging dienen schriftelijk of per e-mail bevestigd te worden.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="privacy-section reveal" id="artikel-6">
+          <span class="section-num">06</span>
+          <h2 class="section-heading">Aansprakelijkheid &amp; <span>garantie</span></h2>
+          <div class="prose">
+            <ul>
+              <li>Kalkema Dienstverlening is alleen aansprakelijk voor directe schade die het gevolg is van opzet of grove nalatigheid.</li>
+              <li>Wij zijn niet aansprakelijk voor indirecte schade, gevolgschade of gederfde winst; verzakken, beschadigen of andere gevolgen van bestaande leidingen, kabels of infrastructuur; bestaand straatwerk, bestrating of ander werk dat al aanwezig is; bestaand leiding- of kabelwerk van derden of van de opdrachtgever.</li>
+              <li>Kalkema Dienstverlening geeft geen garantie op bestaand werk, bestaand straatwerk, bestaande kabels of leidingwerk van de opdrachtgever of derden.</li>
+              <li>Opdrachtgever vrijwaart Kalkema Dienstverlening tegen aanspraken van derden die verband houden met de uitvoering van de werkzaamheden.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="privacy-section reveal" id="artikel-7">
+          <span class="section-num">07</span>
+          <h2 class="section-heading">Overmacht</h2>
+          <div class="prose">
+            <ul>
+              <li>Onder overmacht verstaan wij iedere omstandigheid buiten onze macht waardoor nakoming van de overeenkomst tijdelijk of blijvend onmogelijk is, zoals storm, extreme weersomstandigheden, ziekte, materiaaltekort of overheidsmaatregelen.</li>
+              <li>In geval van overmacht worden de verplichtingen opgeschort of kan de overeenkomst geheel of gedeeltelijk worden ontbonden zonder schadeplicht.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="privacy-section reveal" id="artikel-8">
+          <span class="section-num">08</span>
+          <h2 class="section-heading">Geschillen</h2>
+          <div class="prose">
+            <ul>
+              <li>Op alle overeenkomsten is Nederlands recht van toepassing.</li>
+              <li>Geschillen lossen wij bij voorkeur in overleg op.</li>
+              <li>Indien overleg geen oplossing biedt, is de bevoegde rechter in het arrondissement Lelystad bevoegd.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="privacy-section reveal" id="artikel-9">
+          <span class="section-num">09</span>
+          <h2 class="section-heading">Slotbepalingen</h2>
+          <div class="prose">
+            <ul>
+              <li>Indien enige bepaling van deze algemene voorwaarden nietig of vernietigbaar is, blijven de overige bepalingen volledig van kracht.</li>
+              <li>Kalkema Dienstverlening behoudt zich het recht voor deze voorwaarden te wijzigen.</li>
+            </ul>
+            <div class="info-block">
+              <p><strong>Kalkema Dienstverlening</strong><br/>Hondsdraf 21, 8219 PW Lelystad &nbsp;·&nbsp; KvK 39063177<br/><a href="tel:0636106356">06-36106356</a> &nbsp;·&nbsp; <a href="mailto:info@kalkemadienstverlening.nl">info@kalkemadienstverlening.nl</a></p>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-wrap"><img src="logo.png" alt="Kalkema Dienstverlening" /></div>
+        <p class="footer-tagline">Vakkundig grondverzet, bestrating, tuinaanleg en machineverhuur in Lelystad en omgeving. Voor particulieren én bedrijven — altijd eerlijk, snel en zonder verborgen kosten.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Diensten</div>
+        <ul class="footer-nav-list">
+          <li><a href="grondwerk.html">Grondwerk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+          <li><a href="machineverhuur.html">Machineverhuur <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+          <li><a href="straatwerk.html">Straatwerk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+          <li><a href="tuinaanleg.html">Tuinaanleg <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+          <li><a href="rijbodems.html">Rijbodems &amp; Longeercirkels <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-list">
+          <div class="footer-contact-item"><span class="footer-contact-label">Telefoon</span><span class="footer-contact-value">06-36106356</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-label">E-mail</span><span class="footer-contact-value">info@kalkemadienstverlening.nl</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-label">Adres</span><span class="footer-contact-value">Hondsdraf 21, 8219 PW Lelystad</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-label">KvK</span><span class="footer-contact-value">39063177</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Kalkema Dienstverlening. Alle rechten voorbehouden.</span>
+      <ul class="footer-bottom-links">
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="voorwaarden.html" style="color:var(--cream);">Algemene Voorwaarden</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <span class="footer-made-by">Gebouwd door <a href="https://yoursystem.agency" target="_blank" rel="noopener">YourSystem.agency</a></span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+  <script src="modal.js"></script>
+
+</body>
+</html>
