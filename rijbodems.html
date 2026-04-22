@@ -219,6 +219,27 @@
     .reveal-delay-4{transition-delay:0.24s;}
     @media(max-width:1100px){.werkzaamheden-grid{grid-template-columns:repeat(2,1fr);}.stappen{grid-template-columns:repeat(3,1fr);gap:2rem;}.stappen::after{display:none;}.stap{padding:0;}.diensten-nav{grid-template-columns:repeat(2,1fr);}.doelgroep-grid{grid-template-columns:1fr;}.reviews-grid{grid-template-columns:repeat(2,1fr);}}
     @media(max-width:768px){nav{padding:0 1.5rem;}.nav-links{display:none;}.hero-bar{display:none;}.hero,.wat-doen,.doelgroep,.werkwijze,.reviews,.contact-cta,.andere-diensten,footer{padding-left:1.5rem;padding-right:1.5rem;}.hero{padding-top:90px;padding-bottom:4rem;}.werkzaamheden-grid{grid-template-columns:1fr;}.doelgroep-card{padding:2.5rem 2rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}.diensten-nav{grid-template-columns:1fr;}.reviews-grid{grid-template-columns:1fr;}.stappen{grid-template-columns:1fr;gap:0;padding-left:2rem;border-left:2px solid var(--border);}.stappen::after{display:none;}.stap{padding:0 0 2.5rem 2rem;}.stap:last-child{padding-bottom:0;}.stap::before{content:'';position:absolute;left:-9px;top:24px;width:16px;height:16px;background:var(--surface);border:2px solid var(--orange);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}.footer-top{grid-template-columns:1fr;gap:2.5rem;padding:3rem 1.5rem;}.footer-bottom{flex-direction:column;text-align:center;padding:1.5rem;}.footer-bottom-links{flex-wrap:wrap;justify-content:center;}.section-header{flex-direction:column;}}
+    /* ── Mobile hamburger nav ── */
+    .nav-toggle{display:none;background:transparent;border:none;padding:10px 8px;cursor:pointer;z-index:101;}
+    .nav-toggle span{display:block;width:26px;height:2px;background:var(--cream);margin:5px 0;transition:transform 0.3s ease,opacity 0.2s ease;}
+    .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-toggle.open span:nth-child(2){opacity:0;}
+    .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mobile-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity 0.3s,visibility 0.3s;z-index:98;}
+    .mobile-menu-overlay.open{opacity:1;visibility:visible;}
+    .mobile-menu{position:fixed;top:0;right:0;bottom:0;width:100%;max-width:340px;background:var(--dark);padding:90px 2rem 2rem;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);z-index:99;overflow-y:auto;box-shadow:-20px 0 40px rgba(0,0,0,0.5);border-left:1px solid var(--border);display:flex;flex-direction:column;}
+    .mobile-menu.open{transform:translateX(0);}
+    .mobile-menu-list{list-style:none;padding:0;margin:0 0 2rem;}
+    .mobile-menu-list > li{border-bottom:1px solid var(--border);}
+    .mobile-menu-list > li > a{display:block;padding:16px 0;font-family:var(--font-cond);font-size:0.95rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);transition:color 0.2s;}
+    .mobile-menu-list > li > a:hover,.mobile-menu-list > li > a.active{color:var(--orange);}
+    .mobile-menu-group{padding:14px 0 8px;}
+    .mobile-menu-label{display:block;font-family:var(--font-cond);font-size:0.95rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;}
+    .mobile-menu-group ul{list-style:none;padding:0 0 0 14px;margin:0;border-left:2px solid var(--orange);}
+    .mobile-menu-group ul a{display:block;padding:9px 0;font-family:var(--font-cond);font-size:0.85rem;font-weight:500;letter-spacing:0.06em;color:var(--muted);transition:color 0.2s;}
+    .mobile-menu-group ul a:hover,.mobile-menu-group ul a.active{color:var(--cream);}
+    .mobile-menu-cta{display:inline-block;background:var(--orange);color:var(--black);font-family:var(--font-cond);font-weight:700;font-size:0.8rem;letter-spacing:0.22em;text-transform:uppercase;padding:14px 28px;text-align:center;clip-path:polygon(0 0,100% 0,100% 65%,90% 100%,0 100%);border:none;cursor:pointer;margin-top:auto;}
+    @media(max-width:768px){.nav-toggle{display:block;}.nav-cta{display:none;}}
   </style>
 </head>
 <body>
@@ -237,6 +258,7 @@
           <li><a href="machineverhuur.html">Machineverhuur</a></li>
           <li><a href="straatwerk.html">Straatwerk</a></li>
           <li><a href="tuinaanleg.html">Tuinaanleg</a></li>
+          <li><a href="leidingwerk.html">Leidingwerk (Infra)</a></li>
           <li><a href="rijbodems.html" class="active">Rijbodems &amp; Longeercirkels</a></li>
         </ul>
       </li>
@@ -245,7 +267,29 @@
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
     <button class="nav-cta" onclick="openModal()">Offerte Aanvragen</button>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" aria-hidden="true"></div>
+  <aside class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-menu-list">
+      <li><a href="index.html">Home</a></li>
+      <li class="mobile-menu-group">
+        <span class="mobile-menu-label">Diensten</span>
+        <ul>
+          <li><a href="grondwerk.html">Grondwerk</a></li>
+          <li><a href="machineverhuur.html">Machineverhuur</a></li>
+          <li><a href="straatwerk.html">Straatwerk</a></li>
+          <li><a href="tuinaanleg.html">Tuinaanleg</a></li>
+          <li><a href="leidingwerk.html">Leidingwerk (Infra)</a></li>
+          <li><a href="rijbodems.html" class="active">Rijbodems &amp; Longeercirkels</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#over-ons">Over Ons</a></li>
+      <li><a href="index.html#werkwijze">Werkwijze</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="mobile-menu-cta" onclick="openModal()">Offerte Aanvragen</button>
+  </aside>
 
   <!-- HERO -->
   <section class="hero">
@@ -886,5 +930,6 @@
   </script>
 
   <script src="modal.js"></script>
+  <script src="nav-mobile.js"></script>
 </body>
 </html>

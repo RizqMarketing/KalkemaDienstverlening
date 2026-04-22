@@ -1134,6 +1134,27 @@
       .footer-bottom { flex-direction: column; text-align: center; padding: 1.5rem; }
       .footer-bottom-links { flex-wrap: wrap; justify-content: center; }
     }
+    /* ── Mobile hamburger nav ── */
+    .nav-toggle{display:none;background:transparent;border:none;padding:10px 8px;cursor:pointer;z-index:101;}
+    .nav-toggle span{display:block;width:26px;height:2px;background:var(--cream);margin:5px 0;transition:transform 0.3s ease,opacity 0.2s ease;}
+    .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-toggle.open span:nth-child(2){opacity:0;}
+    .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mobile-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity 0.3s,visibility 0.3s;z-index:98;}
+    .mobile-menu-overlay.open{opacity:1;visibility:visible;}
+    .mobile-menu{position:fixed;top:0;right:0;bottom:0;width:100%;max-width:340px;background:var(--dark);padding:90px 2rem 2rem;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);z-index:99;overflow-y:auto;box-shadow:-20px 0 40px rgba(0,0,0,0.5);border-left:1px solid var(--border);display:flex;flex-direction:column;}
+    .mobile-menu.open{transform:translateX(0);}
+    .mobile-menu-list{list-style:none;padding:0;margin:0 0 2rem;}
+    .mobile-menu-list > li{border-bottom:1px solid var(--border);}
+    .mobile-menu-list > li > a{display:block;padding:16px 0;font-family:var(--font-cond);font-size:0.95rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);transition:color 0.2s;}
+    .mobile-menu-list > li > a:hover,.mobile-menu-list > li > a.active{color:var(--orange);}
+    .mobile-menu-group{padding:14px 0 8px;}
+    .mobile-menu-label{display:block;font-family:var(--font-cond);font-size:0.95rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;}
+    .mobile-menu-group ul{list-style:none;padding:0 0 0 14px;margin:0;border-left:2px solid var(--orange);}
+    .mobile-menu-group ul a{display:block;padding:9px 0;font-family:var(--font-cond);font-size:0.85rem;font-weight:500;letter-spacing:0.06em;color:var(--muted);transition:color 0.2s;}
+    .mobile-menu-group ul a:hover,.mobile-menu-group ul a.active{color:var(--cream);}
+    .mobile-menu-cta{display:inline-block;background:var(--orange);color:var(--black);font-family:var(--font-cond);font-weight:700;font-size:0.8rem;letter-spacing:0.22em;text-transform:uppercase;padding:14px 28px;text-align:center;clip-path:polygon(0 0,100% 0,100% 65%,90% 100%,0 100%);border:none;cursor:pointer;margin-top:auto;}
+    @media(max-width:768px){.nav-toggle{display:block;}.nav-cta{display:none;}}
   </style>
 </head>
 <body>
@@ -1152,6 +1173,7 @@
           <li><a href="machineverhuur.html">Machineverhuur</a></li>
           <li><a href="straatwerk.html">Straatwerk</a></li>
           <li><a href="tuinaanleg.html">Tuinaanleg</a></li>
+          <li><a href="leidingwerk.html">Leidingwerk (Infra)</a></li>
           <li><a href="rijbodems.html">Rijbodems &amp; Longeercirkels</a></li>
         </ul>
       </li>
@@ -1162,7 +1184,29 @@
     <button class="nav-cta" onclick="openModal()">
       Offerte Aanvragen
     </button>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" aria-hidden="true"></div>
+  <aside class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-menu-list">
+      <li><a href="index.html">Home</a></li>
+      <li class="mobile-menu-group">
+        <span class="mobile-menu-label">Diensten</span>
+        <ul>
+          <li><a href="grondwerk.html">Grondwerk</a></li>
+          <li><a href="machineverhuur.html">Machineverhuur</a></li>
+          <li><a href="straatwerk.html">Straatwerk</a></li>
+          <li><a href="tuinaanleg.html">Tuinaanleg</a></li>
+          <li><a href="leidingwerk.html">Leidingwerk (Infra)</a></li>
+          <li><a href="rijbodems.html">Rijbodems &amp; Longeercirkels</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#over-ons">Over Ons</a></li>
+      <li><a href="index.html#werkwijze">Werkwijze</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="mobile-menu-cta" onclick="openModal()">Offerte Aanvragen</button>
+  </aside>
 
   <!-- ─── HERO ─────────────────────────────────────────────── -->
   <section class="hero" id="home">
@@ -1257,7 +1301,7 @@
       </p>
     </div>
 
-    <div class="diensten-grid" style="grid-template-columns: repeat(5, 1fr);">
+    <div class="diensten-grid" style="grid-template-columns: repeat(3, 1fr);">
       <!-- Grondwerk -->
       <div class="dienst-card reveal reveal-delay-1" style="cursor:pointer;" onclick="window.location='grondwerk.html'">
         <div class="dienst-num" aria-hidden="true">01</div>
@@ -1341,9 +1385,28 @@
           </svg>
         </a>
       </div>
-      <!-- Rijbodems & Longeercirkels -->
-      <div class="dienst-card reveal" style="transition-delay:0.5s;cursor:pointer;" onclick="window.location='rijbodems.html'">
+      <!-- Leidingwerk (Infra) -->
+      <div class="dienst-card reveal" style="transition-delay:0.5s;cursor:pointer;" onclick="window.location='leidingwerk.html'">
         <div class="dienst-num" aria-hidden="true">05</div>
+        <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="4" y="28" width="40" height="12" rx="0"/>
+          <path d="M12 28V20M20 28V16M28 28V20M36 28V18"/>
+          <path d="M4 28h40"/>
+        </svg>
+        <div class="dienst-name">Leidingwerk (Infra)</div>
+        <p class="dienst-text">
+          Sleuven voor kabels, water, gas, elektra en riolering binnen GWW. Vakkundig aangelegd met aansluitende grondwerkzaamheden.
+        </p>
+        <a href="leidingwerk.html" class="dienst-link">
+          Meer info
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      <!-- Rijbodems & Longeercirkels -->
+      <div class="dienst-card reveal" style="transition-delay:0.56s;cursor:pointer;" onclick="window.location='rijbodems.html'">
+        <div class="dienst-num" aria-hidden="true">06</div>
         <svg class="dienst-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
           <circle cx="24" cy="24" r="18"/>
           <circle cx="24" cy="24" r="8"/>
@@ -1354,7 +1417,7 @@
         <p class="dienst-text">
           Aanleg en onderhoud van rijbodems en longeercirkels voor de paardenhouderij. Stabiel, waterdoorlatend en duurzaam uitgevoerd.
         </p>
-        <a href="#contact" class="dienst-link">
+        <a href="rijbodems.html" class="dienst-link">
           Meer info
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1968,5 +2031,6 @@
     }
   </script>
   <script src="modal.js"></script>
+  <script src="nav-mobile.js"></script>
 </body>
 </html>

@@ -219,6 +219,48 @@
     .reveal-delay-4{transition-delay:0.24s;}
     @media(max-width:1100px){.werkzaamheden-grid{grid-template-columns:repeat(2,1fr);}.stappen{grid-template-columns:repeat(3,1fr);gap:2rem;}.stappen::after{display:none;}.stap{padding:0;}.diensten-nav{grid-template-columns:repeat(2,1fr);}.doelgroep-grid{grid-template-columns:1fr;}.reviews-grid{grid-template-columns:repeat(2,1fr);}}
     @media(max-width:768px){nav{padding:0 1.5rem;}.nav-links{display:none;}.hero-bar{display:none;}.hero,.wat-doen,.doelgroep,.werkwijze,.reviews,.contact-cta,.andere-diensten,footer{padding-left:1.5rem;padding-right:1.5rem;}.hero{padding-top:90px;padding-bottom:4rem;}.werkzaamheden-grid{grid-template-columns:1fr;}.doelgroep-card{padding:2.5rem 2rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}.diensten-nav{grid-template-columns:1fr;}.reviews-grid{grid-template-columns:1fr;}.stappen{grid-template-columns:1fr;gap:0;padding-left:2rem;border-left:2px solid var(--border);}.stappen::after{display:none;}.stap{padding:0 0 2.5rem 2rem;}.stap:last-child{padding-bottom:0;}.stap::before{content:'';position:absolute;left:-9px;top:24px;width:16px;height:16px;background:var(--surface);border:2px solid var(--orange);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}.footer-top{grid-template-columns:1fr;gap:2.5rem;padding:3rem 1.5rem;}.footer-bottom{flex-direction:column;text-align:center;padding:1.5rem;}.footer-bottom-links{flex-wrap:wrap;justify-content:center;}.section-header{flex-direction:column;}}
+    /* ── 4-staps werkwijze ── */
+    #werkwijze .stappen{grid-template-columns:repeat(4,1fr);}
+    @media(max-width:1100px){#werkwijze .stappen{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:768px){#werkwijze .stappen{grid-template-columns:1fr;}}
+    /* ── Onze kracht callout ── */
+    .onze-kracht{max-width:820px;margin-top:4rem;padding:2rem 2.2rem;background:var(--surface);border-left:3px solid var(--orange);}
+    .onze-kracht p{font-size:1.05rem;line-height:1.85;color:var(--cream);}
+    /* ── VCA hero badge ── */
+    .vca-hero{position:absolute;top:92px;right:4rem;z-index:3;background:#EDE8DF;padding:10px 14px;display:flex;align-items:center;gap:10px;border:1px solid rgba(7,7,7,0.08);clip-path:polygon(0 0,100% 0,100% 75%,92% 100%,0 100%);opacity:0;animation:fadeUp 0.6s ease 1.2s forwards;}
+    .vca-hero img{height:44px;width:auto;display:block;}
+    .vca-hero-text{display:flex;flex-direction:column;line-height:1.1;}
+    .vca-hero-text span{font-family:var(--font-cond);font-size:0.6rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#5A5750;}
+    .vca-hero-text strong{font-family:var(--font-cond);font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0a3a3f;}
+    @media(max-width:768px){.vca-hero{right:1rem;top:82px;padding:8px 10px;}.vca-hero img{height:34px;}.vca-hero-text{display:none;}}
+    /* ── Foto showcase ── */
+    .photo-showcase{position:relative;padding:0;margin:0;height:clamp(360px,48vw,620px);overflow:hidden;}
+    .photo-showcase img{width:100%;height:100%;object-fit:cover;display:block;}
+    .photo-showcase::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,7,0.35) 0%,transparent 30%,transparent 70%,rgba(7,7,7,0.5) 100%);pointer-events:none;}
+    .photo-showcase-caption{position:absolute;left:4rem;bottom:2rem;z-index:2;font-family:var(--font-cond);font-weight:700;font-size:0.8rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--cream);display:flex;align-items:center;gap:12px;}
+    .photo-showcase-caption::before{content:'';width:30px;height:1px;background:var(--orange);}
+    @media(max-width:768px){.photo-showcase-caption{left:1.5rem;bottom:1.25rem;}}
+    /* ── Mobile hamburger nav ── */
+    .nav-toggle{display:none;background:transparent;border:none;padding:10px 8px;cursor:pointer;z-index:101;}
+    .nav-toggle span{display:block;width:26px;height:2px;background:var(--cream);margin:5px 0;transition:transform 0.3s ease,opacity 0.2s ease;}
+    .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-toggle.open span:nth-child(2){opacity:0;}
+    .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mobile-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity 0.3s,visibility 0.3s;z-index:98;}
+    .mobile-menu-overlay.open{opacity:1;visibility:visible;}
+    .mobile-menu{position:fixed;top:0;right:0;bottom:0;width:100%;max-width:340px;background:var(--dark);padding:90px 2rem 2rem;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);z-index:99;overflow-y:auto;box-shadow:-20px 0 40px rgba(0,0,0,0.5);border-left:1px solid var(--border);display:flex;flex-direction:column;}
+    .mobile-menu.open{transform:translateX(0);}
+    .mobile-menu-list{list-style:none;padding:0;margin:0 0 2rem;}
+    .mobile-menu-list > li{border-bottom:1px solid var(--border);}
+    .mobile-menu-list > li > a{display:block;padding:16px 0;font-family:var(--font-cond);font-size:0.95rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);transition:color 0.2s;}
+    .mobile-menu-list > li > a:hover,.mobile-menu-list > li > a.active{color:var(--orange);}
+    .mobile-menu-group{padding:14px 0 8px;}
+    .mobile-menu-label{display:block;font-family:var(--font-cond);font-size:0.95rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;}
+    .mobile-menu-group ul{list-style:none;padding:0 0 0 14px;margin:0;border-left:2px solid var(--orange);}
+    .mobile-menu-group ul a{display:block;padding:9px 0;font-family:var(--font-cond);font-size:0.85rem;font-weight:500;letter-spacing:0.06em;color:var(--muted);transition:color 0.2s;}
+    .mobile-menu-group ul a:hover,.mobile-menu-group ul a.active{color:var(--cream);}
+    .mobile-menu-cta{display:inline-block;background:var(--orange);color:var(--black);font-family:var(--font-cond);font-weight:700;font-size:0.8rem;letter-spacing:0.22em;text-transform:uppercase;padding:14px 28px;text-align:center;clip-path:polygon(0 0,100% 0,100% 65%,90% 100%,0 100%);border:none;cursor:pointer;margin-top:auto;}
+    @media(max-width:768px){.nav-toggle{display:block;}.nav-cta{display:none;}}
   </style>
 </head>
 <body>
@@ -237,6 +279,7 @@
           <li><a href="machineverhuur.html">Machineverhuur</a></li>
           <li><a href="straatwerk.html">Straatwerk</a></li>
           <li><a href="tuinaanleg.html" class="active">Tuinaanleg</a></li>
+          <li><a href="leidingwerk.html">Leidingwerk (Infra)</a></li>
           <li><a href="rijbodems.html">Rijbodems &amp; Longeercirkels</a></li>
         </ul>
       </li>
@@ -245,13 +288,39 @@
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
     <button class="nav-cta" onclick="openModal()">Offerte Aanvragen</button>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" aria-hidden="true"></div>
+  <aside class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-menu-list">
+      <li><a href="index.html">Home</a></li>
+      <li class="mobile-menu-group">
+        <span class="mobile-menu-label">Diensten</span>
+        <ul>
+          <li><a href="grondwerk.html">Grondwerk</a></li>
+          <li><a href="machineverhuur.html">Machineverhuur</a></li>
+          <li><a href="straatwerk.html">Straatwerk</a></li>
+          <li><a href="tuinaanleg.html" class="active">Tuinaanleg</a></li>
+          <li><a href="leidingwerk.html">Leidingwerk (Infra)</a></li>
+          <li><a href="rijbodems.html">Rijbodems &amp; Longeercirkels</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#over-ons">Over Ons</a></li>
+      <li><a href="index.html#werkwijze">Werkwijze</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="mobile-menu-cta" onclick="openModal()">Offerte Aanvragen</button>
+  </aside>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-deco" aria-hidden="true">T</div>
     <div class="hero-bar" aria-hidden="true"></div>
+    <a href="#over-ons-kracht" class="vca-hero" title="VCA gecertificeerd — veilig werken">
+      <img src="vca.webp" alt="VCA gecertificeerd" />
+      <div class="vca-hero-text"><span>Veilig werken</span><strong>VCA Gecertificeerd</strong></div>
+    </a>
     <div class="hero-content">
       <div class="hero-breadcrumb">
         <a href="index.html">Home</a>
@@ -262,9 +331,9 @@
         <span>Tuin</span>
         <span>aanleg</span>
       </h1>
-      <p class="hero-sub">Ontwerp · Aanleg · Afwerking</p>
+      <p class="hero-sub">Grondwerk · Indeling · Bestrating</p>
       <p class="hero-tagline">
-        Wij geloven dat een tuin een verlengstuk is van uw huis, een plek om te ontspannen en te genieten. Ons team staat klaar om uw buitenruimte om te toveren tot een prachtige en functionele tuin die helemaal past bij uw wensen en levensstijl.
+        Wij verzorgen de aanleg van complete tuinen voor zowel kleine als grote projecten. Van de indeling tot het grondwerk en de bestrating — wij zorgen voor een strakke en praktische uitvoering van uw tuin.
       </p>
       <div class="hero-actions">
         <a href="#" class="btn-primary" onclick="event.preventDefault();openModal()">Gratis Offerte</a>
@@ -318,164 +387,66 @@
     </div>
   </div>
 
-  <!-- WAT WE DOEN -->
   <!-- ─── INTRO TEKST ──────────────────────────────────────── -->
   <section class="wat-doen" id="intro-tekst" style="padding-top:6rem;padding-bottom:4rem;">
     <div class="section-header" style="margin-bottom:3rem;">
       <div style="max-width:760px;">
         <div class="section-label reveal">Over onze tuinaanleg</div>
-        <h2 class="section-title reveal reveal-delay-1">Van idee naar realiteit:<br/>uw perfecte tuin</h2>
+        <h2 class="section-title reveal reveal-delay-1">Complete tuinaanleg<br/>op maat</h2>
       </div>
     </div>
     <div class="reveal reveal-delay-2" style="max-width:820px;font-size:1.05rem;line-height:1.85;color:var(--muted);">
-      <p style="margin-bottom:1.4rem;">
-        Een tuin is meer dan alleen groen; het is een plek om tot rust te komen, te genieten en samen te zijn. Wij zijn er om uw ideeën tot leven te brengen en een tuin te creëren waar u elke dag van kunt genieten.
-      </p>
       <p>
-        Laat ons uw visie tot leven brengen en geniet van een tuin die perfect past bij uw levensstijl. Neem vandaag nog contact met ons op voor een vrijblijvend adviesgesprek en ontdek hoe wij uw buitenruimte kunnen transformeren.
+        Wij verzorgen de aanleg van complete tuinen voor zowel kleine als grote projecten. Van de indeling tot het grondwerk en de bestrating: wij zorgen voor een strakke en praktische uitvoering van uw tuin.
       </p>
     </div>
   </section>
 
-  <section class="wat-doen" id="wat-doen">
+  <!-- ─── WERKWIJZE + ONZE KRACHT ───────────────────────────── -->
+  <section class="werkwijze" id="werkwijze">
     <div class="section-header">
       <div>
-        <div class="section-label reveal">Tuinwerkzaamheden</div>
-        <h2 class="section-title reveal reveal-delay-1">Wat wij<br/>uitvoeren</h2>
+        <div class="section-label reveal">Onze werkwijze</div>
+        <h2 class="section-title reveal reveal-delay-1">In vier<br/>stappen</h2>
       </div>
       <p class="section-desc reveal reveal-delay-2">
-        Wij verzorgen de complete aanleg van uw tuin — van de eerste grondbewerking tot de laatste afwerking. Zowel voor particulieren met een droomtuin als voor bedrijven met grotere groenaanleg.
+        Een tuin die strak is aangelegd en goed aansluit op uw wensen — zo pakken wij het aan.
       </p>
     </div>
-
-    <div class="werkzaamheden-grid">
-      <div class="werkzaamheid-card reveal reveal-delay-1">
-        <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M4 40h40M8 40V28l8-8 8 4 8-12 8 8V40"/>
-          <path d="M20 40V32h8v8"/>
-        </svg>
-        <div class="wk-title">Terreinegalisering</div>
-        <p class="wk-text">
-          Uw tuin vlak en gebruiksklaar maken is de basis van een goed resultaat. Wij egaliseren percelen op maat — of het nu gaat om een nieuwbouwtuin of een bestaande tuin die opnieuw ingericht wordt.
-        </p>
+    <div class="stappen">
+      <div class="stap reveal reveal-delay-1">
+        <div class="stap-num-wrap"><div class="stap-num">1</div></div>
+        <div class="stap-title">Voorbereiding &amp; grondwerk</div>
+        <p class="stap-text">We starten met het voorbereiden van de ondergrond en het uitvoeren van het benodigde grondwerk.</p>
       </div>
-      <div class="werkzaamheid-card reveal reveal-delay-2">
-        <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="24" cy="20" r="8"/>
-          <path d="M24 28v14M16 36h16"/>
-          <path d="M10 16c0-8 28-8 28 0"/>
-        </svg>
-        <div class="wk-title">Drainage aanleg</div>
-        <p class="wk-text">
-          Wateroverlast in uw tuin verleden tijd. Wij leggen drainagesystemen aan die grondwater en regenwater snel en effectief afvoeren, zodat uw tuin droog en gezond blijft.
-        </p>
+      <div class="stap reveal reveal-delay-2">
+        <div class="stap-num-wrap"><div class="stap-num">2</div></div>
+        <div class="stap-title">Indeling van de tuin</div>
+        <p class="stap-text">De tuin wordt ingedeeld met bijvoorbeeld bestrating, borders en eventuele hoogteverschillen.</p>
       </div>
-      <div class="werkzaamheid-card reveal reveal-delay-3">
-        <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <ellipse cx="24" cy="28" rx="16" ry="8"/>
-          <path d="M8 28c0-8 32-8 32 0"/>
-          <path d="M16 20c0-6 16-6 16 0"/>
-          <path d="M20 14v-4M28 14v-4M24 12v-6"/>
-        </svg>
-        <div class="wk-title">Vijver &amp; waterpartij</div>
-        <p class="wk-text">
-          Een vijver of waterpartij als blikvanger in uw tuin. Wij graven, waterdichten en leggen aan — inclusief de watertoevoer.
-        </p>
+      <div class="stap reveal reveal-delay-3">
+        <div class="stap-num-wrap"><div class="stap-num">3</div></div>
+        <div class="stap-title">Aanleg van bestrating</div>
+        <p class="stap-text">Wij leggen de bestrating vakkundig en strak aan volgens de afgesproken indeling.</p>
       </div>
-      <div class="werkzaamheid-card reveal reveal-delay-4">
-        <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="4" y="36" width="40" height="8"/>
-          <path d="M8 36V28M14 36V28M20 36V28M26 36V28M32 36V28M38 36V28"/>
-          <path d="M4 28h40"/>
-          <path d="M18 28l-4-8h16l-4 8"/>
-        </svg>
-        <div class="wk-title">Terras &amp; tuinpaden</div>
-        <p class="wk-text">
-          Wij leggen terrassen en paden aan in uw tuin — van eenvoudige tegelpaden tot complete terrasverhardingen. Inclusief een stabiele fundering en correcte afwatering.
-        </p>
+      <div class="stap reveal reveal-delay-4">
+        <div class="stap-num-wrap"><div class="stap-num">4</div></div>
+        <div class="stap-title">Afronding</div>
+        <p class="stap-text">Na de werkzaamheden wordt het project netjes opgeleverd zodat het direct in gebruik kan worden genomen.</p>
       </div>
-      <div class="werkzaamheid-card reveal" style="transition-delay:0.3s">
-        <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="4" y="20" width="40" height="24" rx="0"/>
-          <path d="M4 20h40M4 28h40M4 36h40"/>
-          <path d="M12 20V8M24 20V4M36 20V10"/>
-        </svg>
-        <div class="wk-title">Tuinmuren &amp; borders</div>
-        <p class="wk-text">
-          Keermuren, borderbekistingen en tuinwanden die uw tuin structuur geven. Wij plaatsen deze strak en duurzaam — in natuursteen, beton of hout.
-        </p>
-      </div>
-      <div class="werkzaamheid-card reveal" style="transition-delay:0.36s">
-        <svg class="wk-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M24 44V24"/>
-          <path d="M24 24C24 24 14 18 14 8c0 0 5 4 10 4s10-4 10-4c0 10-10 16-10 16z"/>
-          <path d="M24 32C24 32 16 28 12 22M24 38C24 38 32 34 36 28"/>
-          <path d="M4 44h40"/>
-        </svg>
-        <div class="wk-title">Grondwerk &amp; afvoer</div>
-        <p class="wk-text">
-          Grond afgraven, ophogen, aanvullen of afvoeren als onderdeel van de tuinaanleg. Wij zorgen voor de juiste niveaus en voeren overtollige grond netjes af.
-        </p>
-      </div>
+    </div>
+    <div class="onze-kracht reveal reveal-delay-4" id="over-ons-kracht">
+      <div class="section-label" style="margin-bottom:0.9rem;">Onze kracht</div>
+      <p>Wij werken praktisch en doelgericht. Met een duidelijke aanpak zorgen we voor een tuin die strak is aangelegd en goed aansluit op uw wensen — en omdat we VCA-gecertificeerd zijn, werken we altijd volgens de geldende veiligheidsnormen.</p>
     </div>
   </section>
 
-  <!-- PARTICULIER & ZAKELIJK -->
-  <section class="doelgroep" id="doelgroep">
-    <div style="max-width:100%;">
-      <div class="section-label reveal" style="margin-bottom:0.8rem;">Voor wie werken wij?</div>
-      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:4rem;">Particulier<br/>&amp; Zakelijk</h2>
+  <!-- ─── FOTO SHOWCASE ─────────────────────────────────────── -->
+  <div class="photo-showcase">
+    <img src="portfolio/portfolio-07.jpeg" alt="Tuinaanleg in uitvoering" loading="lazy" />
+    <div class="photo-showcase-caption">Tuinaanleg in uitvoering</div>
+  </div>
 
-      <div class="doelgroep-grid">
-        <!-- PARTICULIER -->
-        <div class="doelgroep-card featured reveal">
-          <div class="dg-num" aria-hidden="true">P</div>
-          <div class="doelgroep-tag">
-            <div class="doelgroep-tag-dot"></div>
-            Voor thuis
-          </div>
-          <h3 class="doelgroep-title">Particulier</h3>
-          <p class="doelgroep-text">
-            U hoeft geen tuinarchitect of aannemer in te schakelen. Wij helpen gewone huiseigenaren met plezier aan hun droomtuin. Van een kleine facelift tot een complete herinrichting — geen klus is te klein.
-          </p>
-          <div class="doelgroep-list">
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Complete tuin herinrichten</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Nieuw gazon inzaaien of leggen</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Terras of tuinpad aanleggen</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Vijver of waterpartij laten aanleggen</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Drainage bij wateroverlast</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Borders en tuinwanden plaatsen</div>
-          </div>
-          <a href="#" class="btn-primary" onclick="event.preventDefault();openModal()">Offerte aanvragen als particulier</a>
-        </div>
-
-        <!-- ZAKELIJK -->
-        <div class="doelgroep-card reveal reveal-delay-1">
-          <div class="dg-num" aria-hidden="true">Z</div>
-          <div class="doelgroep-tag" style="color:var(--muted);">
-            <div class="doelgroep-tag-dot" style="background:var(--muted);"></div>
-            Voor bedrijven
-          </div>
-          <h3 class="doelgroep-title">Zakelijk</h3>
-          <p class="doelgroep-text">
-            Woningbouwprojecten, bedrijfsterreinen, appartementencomplexen en gemeentelijke projecten. Wij verzorgen grootschalige groenaanleg en werken als betrouwbare partner op ieder project.
-          </p>
-          <div class="doelgroep-list">
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Projecttuinen bij nieuwbouwwoningen</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Groenaanleg bedrijfsterreinen</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Gemeenschappelijke tuinen &amp; parken</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Onderaannemerschap voor aannemers</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Terreininrichting bij utiliteit</div>
-            <div class="doelgroep-item"><div class="doelgroep-item-dot"></div>Maatwerk voor grotere projecten</div>
-          </div>
-          <a href="#offerte" class="btn-secondary" style="display:inline-flex;align-items:center;gap:10px;">
-            Neem contact op
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- STATS TICKER -->
   <div class="stats" aria-hidden="true">
@@ -647,76 +618,6 @@
     </div>
   </section>
 
-  <!-- ─── WAAROM KIEZEN ────────────────────────────────────── -->
-  <section class="wat-doen" id="waarom-tuinaanleg" style="padding-top:6rem;padding-bottom:6rem;">
-    <div class="section-header">
-      <div>
-        <div class="section-label reveal">Uw voordeel</div>
-        <h2 class="section-title reveal reveal-delay-1">Waarom kiezen voor<br/>onze tuinaanleg?</h2>
-      </div>
-      <p class="section-desc reveal reveal-delay-2">
-        Maatwerk, vakmanschap en passie voor groen — voor een tuin waar u jarenlang van geniet.
-      </p>
-    </div>
-    <div class="stappen">
-      <div class="stap reveal reveal-delay-1">
-        <div class="stap-title">Persoonlijke aanpak</div>
-        <p class="stap-text">We luisteren goed naar uw ideeën en werken samen aan een tuinontwerp dat perfect aansluit bij uw visie.</p>
-      </div>
-      <div class="stap reveal reveal-delay-2">
-        <div class="stap-title">Zorgvuldig werk</div>
-        <p class="stap-text">Van het eerste ontwerp tot de uiteindelijke aanleg, wij voeren elk onderdeel van het proces met zorg en aandacht voor detail uit.</p>
-      </div>
-      <div class="stap reveal reveal-delay-3">
-        <div class="stap-title">Passie voor groen</div>
-        <p class="stap-text">Onze passie voor tuinen drijft ons om elke klus met enthousiasme aan te pakken, zodat uw tuin een plek wordt waar u trots op kunt zijn.</p>
-      </div>
-      <div class="stap reveal reveal-delay-4">
-        <div class="stap-title">Flexibele oplossingen</div>
-        <p class="stap-text">Elke tuin is uniek en daarom bieden wij maatwerkoplossingen die aansluiten bij uw specifieke wensen en budget.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WERKWIJZE -->
-  <section class="werkwijze" id="werkwijze">
-    <div class="section-header">
-      <div>
-        <div class="section-label reveal">Hoe het werkt</div>
-        <h2 class="section-title reveal reveal-delay-1">Werkwijze</h2>
-      </div>
-      <p class="section-desc reveal reveal-delay-2">
-        Van uw eerste vraag tot de oplevering — een helder en betrouwbaar proces voor particulier en bedrijf.
-      </p>
-    </div>
-    <div class="stappen">
-      <div class="stap reveal reveal-delay-1">
-        <div class="stap-num-wrap"><div class="stap-num">1</div></div>
-        <div class="stap-title">Aanvraag</div>
-        <p class="stap-text">Neem contact op via formulier, telefoon of mail. Beschrijf uw tuinproject kort — of u nu particulier of zakelijk bent.</p>
-      </div>
-      <div class="stap reveal reveal-delay-2">
-        <div class="stap-num-wrap"><div class="stap-num">2</div></div>
-        <div class="stap-title">Inspectie</div>
-        <p class="stap-text">Wij komen gratis langs, bekijken de tuin en bespreken uw wensen. Geen verplichtingen.</p>
-      </div>
-      <div class="stap reveal reveal-delay-3">
-        <div class="stap-num-wrap"><div class="stap-num">3</div></div>
-        <div class="stap-title">Offerte</div>
-        <p class="stap-text">U ontvangt een heldere, vaste prijs. Geen verborgen kosten. Geen verrassingen achteraf.</p>
-      </div>
-      <div class="stap reveal reveal-delay-4">
-        <div class="stap-num-wrap"><div class="stap-num">4</div></div>
-        <div class="stap-title">Uitvoering</div>
-        <p class="stap-text">Ons team gaat aan de slag — efficiënt, nauwkeurig en met respect voor uw eigendom en omgeving.</p>
-      </div>
-      <div class="stap reveal" style="transition-delay:0.3s">
-        <div class="stap-num-wrap"><div class="stap-num">5</div></div>
-        <div class="stap-title">Oplevering</div>
-        <p class="stap-text">De tuin wordt netjes opgeleverd en nagelopen. Alles wordt opgeruimd. U tekent voor akkoord.</p>
-      </div>
-    </div>
-  </section>
 
   <!-- ─── PORTFOLIO ─────────────────────────────────────────── -->
   <section id="portfolio-mount"></section>
@@ -874,5 +775,6 @@
   </script>
 
   <script src="modal.js"></script>
+  <script src="nav-mobile.js"></script>
 </body>
 </html>
